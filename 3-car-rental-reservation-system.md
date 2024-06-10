@@ -1,0 +1,662 @@
+# Car Rental Reservation System
+
+## Assignment Name: Car Rental Reservation System Backend
+
+You have been assigned the task of building the backend for a Car Renting System. The main focus of this assignment is to implement error handling, CRUD operations, authentication, and authorization, Transaction & Rollback (If necessary)
+
+## Technology Stack:
+
+*   Use TypeScript as the programming language.
+*   Use Express.js as the web framework.
+*   Use Mongoose as the Object Data Modeling (ODM) and validation library for MongoDB
+
+## Main Part: (50 Marks)
+
+  
+
+## **Model:**
+
+### **User Model:**
+
+*   **name**: The name of the entity or user.
+*   **email**: The contact email address.
+*   **role**: There will be two types of users:
+    *   user
+    *   admin
+*   **password**: The account password.
+*   **phone**: The contact phone number.
+*   **address**: The physical address.
+
+  
+
+### **Car Model:**
+
+*   **name**: The name of the car.
+*   **description**: A brief description of what the car entails.
+*   **color:** The color of the car.
+*   **isElectric**: Boolean to indicate if the car is electric.
+*   **status**: The availability of the car. By default, the status will be `available.`
+*   **features**: An array listing the features of the car (e.g., \["Bluetooth", "AC", "Sunroof"\]).
+*   **pricePerHour**: The cost per hour of the booking in the local currency.
+*   **isDeleted**: Indicates whether the car has been marked as deleted (false means it is not deleted).
+
+  
+
+### **Booking Model:**
+
+*   **date**: The date of the booking.
+*   **user**: Identifier for the user. **_(reference to user model)_**
+*   **car**: Identifier for the booked car. **_(reference to car model)_**
+*   **startTime**: The start time of the booking. The time will be in 24hr format.
+*   **endTime:** The end time of the booking. The time will be in 24hr format.
+*   **totalCost**: The total cost will be calculated using `startTime`, `endTime` and `pricePerHour` data. By default cost will be `0`.
+*   **isBooked**: Indicates the booking status, whether it's `unconfirmed` or `confirmed` . By default, it will be `unconfirmed` .
+
+  
+
+## API Endpoints
+
+### 1\. Sign Up
+
+**Route**: `/api/auth/signup` (**POST**)
+
+**Request Body:**
+
+```json
+{
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "role": "user",  // role can be useror admin
+  "password": "password123",
+  "phone": "1234567890",
+  "address": "123 Main St, City, Country"
+ 
+}
+```
+
+**Response**:
+
+```json
+{
+  "success": true,
+  "statusCode": 201,
+  "message": "User registered successfully",
+  "data": {
+    "_id": "6071f0fbf98b210012345678",
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "role": "user",
+    "phone": "1234567890",
+    "address": "123 Main St, City, Country",
+    "createdAt": "2024-06-10T12:00:00.000Z",
+    "updatedAt": "2024-06-10T12:00:00.000Z"
+  }
+}
+```
+
+###   
+
+### 2\. Sign In
+
+**Route**: `/api/auth/signin`(**POST**)
+
+**Request Body:**
+
+```json
+{
+  "email": "johndoe@example.com",
+  "password": "password123"
+}
+```
+
+**Response:**
+
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "User logged in successfully",
+  "data": {
+    "_id": "6071f0fbf98b210012345678",
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "role": "user",
+    "phone": "1234567890",
+    "address": "123 Main St, City, Country",
+    "createdAt": "2024-06-10T12:00:00.000Z",
+    "updatedAt": "2024-06-10T12:00:00.000Z"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... (your JWT token)"
+}
+```
+
+### 3\. Create a Car (Only accessible to the Admin)
+
+**Route**: `/api/cars`(**POST**)
+
+**Request Headers:**
+
+```javascript
+Authorization: 
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF
+tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+
+You must include "Bearer" at the beginning of the token! Do not copy and apply directly from the module. If you blindly follow the modules, you will be a copy master, not a developer.
+```
+
+  
+
+**Request Body:**
+
+```json
+{
+  "name": "Tesla Model 3",
+  "description": "An electric car with advanced technology and performance.",
+  "color": "White",
+  "isElectric": true,
+  "features": ["AC", "Bluetooth", "Long Range Battery"],
+  "pricePerHour": 500
+}
+```
+
+**Response:**
+
+```json
+{
+  "success": true,
+  "statusCode": 201,
+  "message": "Car created successfully",
+  "data": {
+     "_id": "608a6d8d03a1b40012abcdef",
+    "name": "Tesla Model 3",
+    "description": "An electric car with advanced technology and performance.",
+    "color": "White",
+    "isElectric": true,
+    "features": ["AC", "Bluetooth", "Long Range Battery"],
+    "pricePerHour": 500,
+    "status":"available",
+    "isDeleted": false,
+    "createdAt": "2024-04-28T12:00:00.000Z",
+    "updatedAt": "2024-04-28T12:00:00.000Z"
+  }
+}
+```
+
+### 4\. Get All Cars
+
+**Route**: `/api/cars`(**GET**)
+
+**Response Body:**
+
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Cars retrieved successfully",
+  "data": [
+    {
+      "_id": "608a6d8d03a1b40012abcdef",
+      "name": "Tesla Model 3",
+      "description": "An electric car with advanced technology and performance.",
+      "color": "White",
+      "isElectric": true,
+      "features": ["AC", "Bluetooth", "Long Range Battery"],
+      "pricePerHour": 500,
+      "status":"available",
+      "isDeleted": false,
+      "createdAt": "2024-04-28T12:00:00.000Z",
+      "updatedAt": "2024-04-28T12:00:00.000Z"
+    },
+    // more data
+  ]
+}
+```
+
+  
+
+### 5\. Get A Car
+
+**Route**: `/api/cars/:id`(**GET**)
+
+**Response Body:**
+
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "A Car retrieved successfully",
+  "data": {
+    "_id": "608a6d8d03a1b40012abcdef",
+    "name": "Tesla Model 3",
+    "description": "An electric car with advanced technology and performance.",
+    "color": "White",
+    "isElectric": true,
+    "features": ["AC", "Bluetooth", "Long Range Battery"],
+    "pricePerHour": 500,
+    "status":"available",
+    "isDeleted": false,
+    "createdAt": "2024-04-28T12:00:00.000Z",
+    "updatedAt": "2024-04-28T12:00:00.000Z"
+  }
+}
+```
+
+  
+
+### **6\. Update A Car (Only Accessible by Admin)**
+
+**Route:** `/api/cars/:id`(**PUT**)
+
+**Request Headers:**
+
+```javascript
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF
+tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+
+You must include "Bearer" at the beginning of the token! 
+```
+
+**Request Body:**
+
+```json
+{
+     "color": "Black",  
+}
+```
+
+**Response Body:**
+
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Car updated successfully",
+  "data": {
+    "_id": "608a6d8d03a1b40012abcdef",
+    "name": "Tesla Model 3",
+    "description": "An electric car with advanced technology and performance.",
+    "color": "Black",
+    "isElectric": true,
+    "features": ["AC", "Bluetooth", "Long Range Battery"],
+    "pricePerHour": 500,
+    "status":"available",
+    "isDeleted": false,
+    "createdAt": "2024-04-28T12:00:00.000Z",
+    "updatedAt": "2024-04-29T12:00:00.000Z"
+  }   
+}
+```
+
+**Note**: You will have to update all the fields including name, description, color, isElectric, features,
+
+pricePerHour, etc.
+
+###   
+
+### **7\. Delete A Car (Only Accessible by Admin)**
+
+**Route:** `/api/cars/:id`(**DELETE**) \[SOFT DELETE\]
+
+**Request Headers:**
+
+```javascript
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF
+tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+
+You must include "Bearer" at the beginning of the token! 
+```
+
+**Response Body:**
+
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Car Deleted successfully",
+  "data": {
+    "_id": "608a6d8d03a1b40012abcdef",
+    "name": "Tesla Model 3",
+    "description": "An electric car with advanced technology and performance.",
+    "color": "Black",
+    "isElectric": true,
+    "features": ["AC", "Bluetooth", "Long Range Battery"],
+    "pricePerHour": 500,
+    "status":"available",
+    "isDeleted": true,
+    "createdAt": "2024-04-28T12:00:00.000Z",
+    "updatedAt": "2024-05-29T12:00:00.000Z"
+  }   
+}
+```
+
+  
+
+### **8\. Get All Bookings (Accessible by Admin)**
+
+**Route:** `/api/bookings`(**GET**)
+
+**Query Parameters:**
+
+*   `carId`: ID of the car for which availability needs to be checked.
+*   `date`: The specific date for which availability needs to be checked (format: YYYY-MM-DD).
+*   `isBooked`: Filter the bookings based on their booking status. Possible values are:
+    *   `unconfirmed`: Booking that are unconfirmed.
+    *   `confirmed`: Booking that are confirmed.
+
+  
+
+Example Request:
+
+`/api/bookings?carId=608a6d8d03a1b40012abcdef&date=2024-06-15&isBooked=unconfirmed`
+
+  
+
+**Response Body:**
+
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Bookings retrieved successfully",
+  "data": [
+    {
+      "_id": "60d9c4e4f3b4b544b8b8d1c7",
+      "car": {
+        "_id": "608a6d8d03a1b40012abcdef",
+        "name": "Tesla Model 3",
+        "description": "An electric car with advanced technology and performance.",
+        "color": "White",
+        "isElectric": true,
+        "features": ["AC", "Bluetooth", "Long Range Battery"],
+        "pricePerHour": 500,
+        "status": "available",
+        "isDeleted": false,
+        "createdAt": "2024-04-28T12:00:00.000Z",
+        "updatedAt": "2024-04-28T12:00:00.000Z"
+      },
+
+      "isBooked": "unconfirmed",
+      "createdAt": "2024-04-28T12:00:00.000Z",
+      "updatedAt": "2024-05-29T12:00:00.000Z"
+    },
+    //...additional bookings...
+  ]
+}
+```
+
+  
+
+### **9\. Book a Car (Only Accessible by Users)**
+
+**Route:** `/api/bookings`(**POST**)
+
+**Request Headers:**
+
+```javascript
+Authorization: 
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF
+tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+
+You must include "Bearer" at the beginning of the token!
+```
+
+  
+
+**Request Body:**
+
+```json
+{
+   "carId": "60d9c4e4f3b4b544b8b8d1c7",
+   "date": "2024-06-15",
+   "startTime": "13:00",
+
+}
+```
+
+  
+
+**Response Body:**
+
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Car booked successfully",
+  "data": {
+      "_id": "60d9c4e4f3b4b544b8b8d1c7",
+      "date": "2024-06-15",
+      "startTime": "13:00",
+      "endTime": "00:00",
+      "user": {
+          "_id": "6071f0fbf98b210012345688",
+          "name": "Tom",
+          "email": "tom@example.com",
+          "role": "user",
+        },
+      "car": {
+        "_id": "608a6d8d03a1b40012abcdef",
+        "name": "Tesla Model 3",
+        "description": "An electric car with advanced technology and performance.",
+        "color": "White",
+        "isElectric": true,
+        "features": ["AC", "Bluetooth", "Long Range Battery"],
+        "pricePerHour": 500,
+        "status": "unavailable",
+        "isDeleted": false,
+        "createdAt": "2024-04-28T12:00:00.000Z",
+        "updatedAt": "2024-04-28T12:00:00.000Z"
+      },
+      "totalCost": 0
+      "isBooked": "confirmed", 
+      "createdAt": "2024-04-28T12:00:00.000Z",
+      "updatedAt": "2024-05-29T12:00:00.000Z"
+    }
+}
+
+
+```
+
+  
+
+### **10\. Get User's Bookings (Only Accessible by logged in User)**
+
+**Route:** `/api/bookings/my-bookings`(**GET**)
+
+**Request Headers:**
+
+```javascript
+Authorization: 
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF
+tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+
+You must include "Bearer" at the beginning of the token! 
+
+
+```
+
+**Response Body:**
+
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "My Bookings retrieved successfully",
+  "data": [
+    {
+      "_id": "60d9c4e4f3b4b544b8b8d1c7",
+      "date": "2024-06-15",
+      "startTime": "13:00",
+      "endTime": "00:00",
+      "user": {
+          "_id": "6071f0fbf98b210012345688",
+          "name": "Tom",
+          "email": "tom@example.com",
+          "role": "user",
+          
+      },
+      "car": {
+        "_id": "608a6d8d03a1b40012abcdef",
+        "name": "Tesla Model 3",
+        "description": "An electric car with advanced technology and performance.",
+        "color": "White",
+        "isElectric": true,
+        "features": ["AC", "Bluetooth", "Long Range Battery"],
+        "pricePerHour": 500,
+        "status":"unavailable",
+        "isDeleted": false,
+        "createdAt": "2024-04-28T12:00:00.000Z",
+        "updatedAt": "2024-04-28T12:00:00.000Z"
+      },
+      "totaCost":0,
+      "isBooked": "confirmed ",
+      "createdAt": "2024-04-28T12:00:00.000Z",
+      "updatedAt": "2024-05-29T12:00:00.000Z"
+    },
+   // ...additional bookings...
+  ]
+}
+```
+
+##   
+
+## **11\. Return The Car (Only Accessible by Admin)**
+
+**Route:** `/api/cars/return`(PUT)
+
+**Request Headers:**
+
+```javascript
+Authorization: 
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF
+tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+
+You must include "Bearer" at the beginning of the token!
+```
+
+**Request Body:**
+
+```json
+{
+   "bookingId": "60d9c4e4f3b4b544b8b8d1c7",
+   "endTime": "15:00"
+}
+```
+
+  
+
+**Response Body:**
+
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Car booked successfully",
+  "data": {
+      "_id": "60d9c4e4f3b4b544b8b8d1c7",
+      "date": "2024-06-15",
+      "startTime": "13:00",
+      "endTime: "15:00",
+      "user": {
+          "_id": "6071f0fbf98b210012345688",
+          "name": "Tom",
+          "email": "tom@example.com",
+          "role": "user"
+        },
+      "car": {
+        "_id": "608a6d8d03a1b40012abcdef",
+        "name": "Tesla Model 3",
+        "description": "An electric car with advanced technology and performance.",
+        "color": "White",
+        "isElectric": true,
+        "features": ["AC", "Bluetooth", "Long Range Battery"],
+        "pricePerHour": 500,
+        "status": "available" // status updated
+        "isDeleted": false,
+        "createdAt": "2024-04-28T12:00:00.000Z",
+        "updatedAt": "2024-04-28T12:00:00.000Z"
+      },
+      "totalCost":1000, //Calculated using the start time, end time, and price per hour.
+      "isBooked": "confirmed", // after booking the slot this status will change.
+      "createdAt": "2024-04-28T12:00:00.000Z",
+      "updatedAt": "2024-05-29T12:00:00.000Z"
+    }
+}
+
+
+```
+
+## Hints for `totalCost` calculation:
+
+*   **Convert Times to Hours:** The `startTime` and `endTime` are in `24 hour` format. Convert them to hours.
+*   **Calculate Duration:** Subtract `startTime` from `endTime` to find the total duration in hours.
+*   **Multiply by Price per Hour:** Once you have the duration in hours, multiply it by the`pricePerHour` to get the total cost.
+
+  
+
+## Bonus Part:
+
+### **1\. No Data Found:**
+
+When retrieving data, if the database collection is empty or no matching data is found, return the message: "No data found."
+
+```elixir
+{
+  "success": false,
+  "message": "No Data Found",
+  "data":[]
+}
+```
+
+### **2\. Error Handling:**
+
+Implement proper error handling throughout the application. Use global error handling `middleware` to catch and handle errors, providing appropriate error responses with status codes and error messages.
+
+  
+
+**Error Response Object Should include the following properties:**
+
+*   success → false
+*   message → Error Type → Validation Error, Cast Error, Duplicate Entry
+*   errorMessages
+*   stack
+
+  
+
+#### **Sample Error Response**
+
+```json
+{
+    "success": false,
+    "message": "E11000 duplicate key error collection: univerity-management.students index:
+                email_1 dup key: { email: \\"user2@gmail.com\\" }",
+    "errorMessages": [
+        {
+            "path": "",
+            "message": "E11000 duplicate key error collection: univerity-management.students
+                        index: email_1 dup key: { email: \\"user2@gmail.com\\" }"
+        }
+    ],
+    "stack": "MongoServerError: E11000 duplicate key error collection: univerity-
+              management.students index: email_1 dup key: { email: \\"user2@gmail.com\\" }\\n 
+              at H:\\\\next-level-development\\\\university-management-auth-
+              service\\\\node_modules\\\\mongodb\\\\src\\\\operations\\\\insert.ts:85:25\\n 
+              at H:\\\\next-level-development\\\\university-management-auth-
+             service\\\\node_modules\\\\mongodb\\\\src\\\\cmap\\\\connection_pool.ts:574:11\\n  
+             at H:\\\\next-level-development\\\\university-writeOrBuffer 
+             (node:internal/streams/writable:391:12)"
+}
+```
+
+###   
+
+### **3\. Not Found Route:**
+
+Implement a global "Not Found" handler for unmatched routes. When a route is not found, respond with a generic message: "Not Found.”
+
+```json
+{
+  "success": true,
+  "statusCode": 404,
+  "message": "Not Found",
+}
+```

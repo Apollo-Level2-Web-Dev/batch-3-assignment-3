@@ -45,10 +45,10 @@
 | The last Digit of PH Student ID | Assignment Number (Design No)  |
 | ------------------------------- | ------------------------------ |
 | 0, 1                            | [SET-1](./1-car-washing-system.md) |
-| 2, 3                            | [SET-2](./2-pet-addoption.md)  |
+| 2, 3                            | [SET-2](./2-meeting-room-booking-system.md)  |
 | 4, 5                            | [SET-3](./3-car-rental-reservation-system.md) |
 | 6, 7                            | [SET-4](./4-bike-rental-service.md)     |
-| 8, 9                            | [SET-5](./5-travel-buddy.md)   |
+| 8, 9                            | [SET-5](./5-sports-facility-booking-platform.md)   |
 
 ### ⏰ **Deadline:**
 

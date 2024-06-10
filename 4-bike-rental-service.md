@@ -2,6 +2,9 @@
 
 * * *
 
+## Assignment Name: Bike Rental Reservation System Backend
+
+You have been assigned the task of building the backend for a Bike Renting System. The main focus of this assignment is to implement error handling, CRUD operations, authentication, and authorization, Transaction & Rollback (If necessary)
 ---
 
 ### Technology Stack:

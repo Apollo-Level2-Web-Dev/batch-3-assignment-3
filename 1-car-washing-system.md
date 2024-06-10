@@ -440,8 +440,8 @@ You must include "Bearer" at the beginning of the token!
         *   Start Time: "09:00"
         *   End Time: "14:00"
     4. **Convert Times to Minutes**:
-        *   "09:00" → 9 \* 60 + 0 = 540 minutes.
-        *   "14:00" → 14 \* 60 + 0 = 840 minutes.
+        *   "09:00" → 9 \* 60 = 540 minutes.
+        *   "14:00" → 14 \* 60 = 840 minutes.
     5. **Calculate Total Duration**:
         *   Total Duration: 840 minutes - 540 minutes = 300 minutes
     6. **Number of Slots**:

@@ -85,7 +85,7 @@ As the development progresses, you implement robust validation and error handlin
   
 ```
 
-*       *   **Response:**
+  -   **Response:**
 
 ```json
 {

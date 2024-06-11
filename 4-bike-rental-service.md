@@ -93,6 +93,7 @@ Jhankar's bike rental service quickly became popular. Tourists and locals loved 
             "email": "john@example.com",
             "phone": "1234567890",
             "address": "123 Main St, Anytown",
+            "role" : "admin",
             "createdAt": "2024-06-10T13:26:51.289Z",
             "updatedAt": "2024-06-10T13:26:51.289Z",
             "__v": 0
@@ -126,7 +127,8 @@ Jhankar's bike rental service quickly became popular. Tourists and locals loved 
             "name": "John Doe",
             "email": "john@example.com",
             "phone": "1234567890",
-            "address": "123 Main St, Anytown"
+            "address": "123 Main St, Anytown",
+            "role" : "admin"
           }
         }
         
@@ -182,7 +184,8 @@ Jhankar's bike rental service quickly became popular. Tourists and locals loved 
             "name": "John Updated",
             "email": "john@example.com",
             "phone": "0987654321",
-            "address": "123 Main St, Anytown"
+            "address": "123 Main St, Anytown",
+            "role" : "admin"
           }
         }
         

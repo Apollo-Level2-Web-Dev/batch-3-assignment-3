@@ -204,7 +204,7 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
     "isElectric": true,
     "features": ["AC", "Bluetooth", "Long Range Battery"],
     "pricePerHour": 500,
-    "status":"available",
+    "status": "available",
     "isDeleted": false,
     "createdAt": "2024-04-28T12:00:00.000Z",
     "updatedAt": "2024-04-28T12:00:00.000Z"
@@ -232,7 +232,7 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
       "isElectric": true,
       "features": ["AC", "Bluetooth", "Long Range Battery"],
       "pricePerHour": 500,
-      "status":"available",
+      "status": "available",
       "isDeleted": false,
       "createdAt": "2024-04-28T12:00:00.000Z",
       "updatedAt": "2024-04-28T12:00:00.000Z"
@@ -263,7 +263,7 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
     "isElectric": true,
     "features": ["AC", "Bluetooth", "Long Range Battery"],
     "pricePerHour": 500,
-    "status":"available",
+    "status": "available",
     "isDeleted": false,
     "createdAt": "2024-04-28T12:00:00.000Z",
     "updatedAt": "2024-04-28T12:00:00.000Z"
@@ -309,7 +309,7 @@ You must include "Bearer" at the beginning of the token!
     "isElectric": true,
     "features": ["AC", "Bluetooth", "Long Range Battery"],
     "pricePerHour": 500,
-    "status":"available",
+    "status": "available",
     "isDeleted": false,
     "createdAt": "2024-04-28T12:00:00.000Z",
     "updatedAt": "2024-04-29T12:00:00.000Z"
@@ -347,7 +347,7 @@ You must include "Bearer" at the beginning of the token!
     "isElectric": true,
     "features": ["AC", "Bluetooth", "Long Range Battery"],
     "pricePerHour": 500,
-    "status":"available",
+    "status": "available",
     "isDeleted": true,
     "createdAt": "2024-04-28T12:00:00.000Z",
     "updatedAt": "2024-05-29T12:00:00.000Z"
@@ -387,6 +387,17 @@ Example Request:
   "data": [
     {
       "_id": "60d9c4e4f3b4b544b8b8d1c7",
+      "date": "2024-06-15",
+      "startTime": "13:00",
+      "endTime": null, // it will be null by default, when booked. It will be updated by the admin, when the car is returned.
+      "user": {
+          "_id": "6071f0fbf98b210012345688",
+          "name": "Tom",
+          "email": "tom@example.com",
+          "role": "user",
+          "phone": "1234567890",
+          "address": "123 Main St, City, Country",
+      },
       "car": {
         "_id": "608a6d8d03a1b40012abcdef",
         "name": "Tesla Model 3",
@@ -395,13 +406,13 @@ Example Request:
         "isElectric": true,
         "features": ["AC", "Bluetooth", "Long Range Battery"],
         "pricePerHour": 500,
-        "status": "available",
+        "status": "unavailable",
         "isDeleted": false,
         "createdAt": "2024-04-28T12:00:00.000Z",
         "updatedAt": "2024-04-28T12:00:00.000Z"
       },
-
-      "isBooked": "unconfirmed",
+      "totalCost": 0, // it will be 0 by default, when booked. It will be calculate and update by the admin, when the car is returned.
+      "isBooked": "confirmed", 
       "createdAt": "2024-04-28T12:00:00.000Z",
       "updatedAt": "2024-05-29T12:00:00.000Z"
     },
@@ -457,7 +468,9 @@ You must include "Bearer" at the beginning of the token!
           "name": "Tom",
           "email": "tom@example.com",
           "role": "user",
-        },
+          "phone": "1234567890",
+          "address": "123 Main St, City, Country",
+      },
       "car": {
         "_id": "608a6d8d03a1b40012abcdef",
         "name": "Tesla Model 3",
@@ -466,7 +479,7 @@ You must include "Bearer" at the beginning of the token!
         "isElectric": true,
         "features": ["AC", "Bluetooth", "Long Range Battery"],
         "pricePerHour": 500,
-        "status": "unavailable",
+        "status": "unavailable", 
         "isDeleted": false,
         "createdAt": "2024-04-28T12:00:00.000Z",
         "updatedAt": "2024-04-28T12:00:00.000Z"
@@ -515,7 +528,8 @@ You must include "Bearer" at the beginning of the token!
           "name": "Tom",
           "email": "tom@example.com",
           "role": "user",
-          
+          "phone": "1234567890",
+          "address": "123 Main St, City, Country",
       },
       "car": {
         "_id": "608a6d8d03a1b40012abcdef",
@@ -584,7 +598,9 @@ You must include "Bearer" at the beginning of the token!
           "_id": "6071f0fbf98b210012345688",
           "name": "Tom",
           "email": "tom@example.com",
-          "role": "user"
+          "role": "user",
+          "phone": "1234567890",
+          "address": "123 Main St, City, Country",
         },
       "car": {
         "_id": "608a6d8d03a1b40012abcdef",

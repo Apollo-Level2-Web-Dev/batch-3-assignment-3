@@ -454,7 +454,7 @@ You must include "Bearer" at the beginning of the token!
 
   
 
-### **10\. Get User's Bookings (Only Accessible by User)**
+### **10\. Get User's Bookings (Only Accessible To User)**
 
 **Route:** `/api/bookings/my-bookings`(**GET**)
 
@@ -482,7 +482,7 @@ You must include "Bearer" at the beginning of the token!
       "_id": "60d9c4e4f3b4b544b8b8d1c7",
       "date": "2024-06-15",
       "startTime": "13:00",
-      "endTime": "00:00",
+      "endTime": "15:00",
       "user": {
           "_id": "6071f0fbf98b210012345688",
           "name": "Tom",
@@ -503,7 +503,7 @@ You must include "Bearer" at the beginning of the token!
         "createdAt": "2024-04-28T12:00:00.000Z",
         "updatedAt": "2024-04-28T12:00:00.000Z"
       },
-      "totaCost":0,
+      "totaCost":1000,
       "isBooked": "confirmed ",
       "createdAt": "2024-04-28T12:00:00.000Z",
       "updatedAt": "2024-05-29T12:00:00.000Z"
@@ -515,7 +515,8 @@ You must include "Bearer" at the beginning of the token!
 
 ##   
 
-## **11\. Return The Car (Only Accessible by Admin)**
+## **11\. Return The Car (Only Accessible To Admin)**
+
 
 **Route:** `/api/cars/return`(PUT)
 
@@ -572,7 +573,7 @@ You must include "Bearer" at the beginning of the token!
         "updatedAt": "2024-04-28T12:00:00.000Z"
       },
       "totalCost":1000, //Calculated using the start time, end time, and price per hour.
-      "isBooked": "confirmed", // after booking the slot this status will change.
+      "isBooked": "confirmed",
       "createdAt": "2024-04-28T12:00:00.000Z",
       "updatedAt": "2024-05-29T12:00:00.000Z"
     }
@@ -583,7 +584,7 @@ You must include "Bearer" at the beginning of the token!
 
 ## Hints for `totalCost` calculation:
 
-*   **Convert Times to Hours:** The `startTime` and `endTime` are in `24 hour` format. Convert them to hours.
+*   **Convert Times to Hours:** The `startTime` and `endTime` are in `24 hour` format. Convert them to hours for calculating.
 *   **Calculate Duration:** Subtract `startTime` from `endTime` to find the total duration in hours.
 *   **Multiply by Price per Hour:** Once you have the duration in hours, multiply it by the`pricePerHour` to get the total cost.
 

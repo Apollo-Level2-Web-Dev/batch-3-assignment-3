@@ -37,7 +37,7 @@ You have been assigned the task of building the backend for a Car Washing System
 
 ### Booking Model
 
-*       *   `customer`: Reference to the user who made the booking.
+    *   `customer`: Reference to the user who made the booking.
     *   `service`: Reference to the booked service.
     *   `slot`: Reference to the booking slot.
     *   `vehicleType`: Type of the vehicle (enum: `car`, `truck`, `SUV`, `van`, `motorcycle`, `bus`, `electricVehicle`, `hybridVehicle`, `bicycle`, `tractor`).

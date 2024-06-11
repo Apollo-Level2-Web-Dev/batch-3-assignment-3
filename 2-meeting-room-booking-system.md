@@ -70,8 +70,8 @@ As the development progresses, you implement robust validation and error handlin
   
 
 1. **User Sign Up**
-    -   _*Route:*_ `/api/auth/signup` (POST)
-    -   **Request Body:**
+-   _*Route:*_ `/api/auth/signup` (POST)
+-   **Request Body:**
 
 ```json
 {
@@ -85,7 +85,7 @@ As the development progresses, you implement robust validation and error handlin
   
 ```
 
-    -   **Response:**
+-   **Response:**
 
 ```json
 {

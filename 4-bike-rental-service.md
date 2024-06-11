@@ -169,7 +169,7 @@ You have been assigned the task of building the backend for a Bike Renting Syste
         ```
         
 
-**Bike Routes**:
+## **Bike Routes**:
 
 1. **Create Bike (Admin Only)**
     - **Route**: /api/bikes (POST)
@@ -261,7 +261,7 @@ You have been assigned the task of building the backend for a Bike Renting Syste
             "_id": "bike_id",
             "name": "Mountain Bike",
             "description": "A durable mountain bike for rough terrains.",
-            "pricePerHour": 20,
+            "pricePerHour": 20, // Updated price per hour
             "isAvailable": true,
             "cc": 250,
             "year": 2022,

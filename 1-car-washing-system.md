@@ -1,5 +1,23 @@
 # Car Washing System Backend
 
+## Story
+In a small town, there was a car wash run by an old man named Mr. Joe. People said his car wash had a special power – it made dreams come true.
+
+One sunny day, a little girl named Lily visited the car wash with her dad. Lily had a big dream of becoming an artist, but she was shy and unsure if she was any good.
+
+As Mr. Joe washed their car, he noticed Lily staring at the colorful soap bubbles. He smiled kindly and asked her about her dreams. Lily hesitated at first but then shared her passion for painting.
+
+Mr. Joe listened intently, then handed Lily a brush and some paints. He told her to paint whatever she liked on the car windows. Lily's eyes lit up with excitement.
+
+With shaky hands, Lily began to paint. She poured her heart onto the windows, creating a beautiful masterpiece. When she finished, she stepped back to admire her work, feeling proud.
+
+From that day on, Lily's confidence grew. She painted everywhere she could, and her talent blossomed. Years later, Lily became a famous artist, known for her vibrant paintings.
+
+And whenever she passed by the magic car wash, now run by Mr. Joe's grandchildren, she couldn't help but smile, remembering the day her dreams took flight.
+
+---
+
+
 You have been assigned the task of building the backend for a Car Washing System. The main focus of this assignment is to implement Error Handling, CRUD operations, Authentication & Authorization, Transaction & Rollback (If necessary)
 
 ## **Technology Stack:**

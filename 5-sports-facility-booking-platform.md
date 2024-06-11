@@ -109,8 +109,8 @@ Calculation:
   
 
 1. **User Sign Up**
-    *   **Route**: `POST /api/auth/signup`
-    *   **Request Body**:
+*   **Route**: `POST /api/auth/signup`
+*   **Request Body**:
 
 ```json
 {
@@ -123,6 +123,7 @@ Calculation:
 }
 ```
 
+* **Response:**
 ```json
 {
   "success": true,
@@ -140,8 +141,8 @@ Calculation:
 ```
 
 2. **User Login**
-    *   **Route**: `POST /api/auth/login`
-    *   **Request Body**:
+*   **Route**: `POST /api/auth/login`
+*   **Request Body**:
 
 ```json
 {
@@ -150,6 +151,7 @@ Calculation:
 }
 ```
 
+* **Response:**
 ```json
 {
   "success": true,
@@ -169,13 +171,10 @@ Calculation:
 
   
 
-#### Facility Routes
 
-  
-
-1. **Create a Facility (Admin Only)**
-    *   **Route**: `POST /api/facility`
-    *   **Headers**:
+3. **Create a Facility (Admin Only)**
+*   **Route**: `POST /api/facility`
+*   **Headers**:
 
 ```plain
 Authorization: Bearer JWT_TOKEN
@@ -210,9 +209,9 @@ Authorization: Bearer JWT_TOKEN
 
   
 
-1. **Update a Facility (Admin Only)**
-    *   **Route**: `PUT /api/facility/:id`
-    *   **Headers**:
+4. **Update a Facility (Admin Only)**
+*   **Route**: `PUT /api/facility/:id`
+*   **Headers**:
 
 ```plain
 Authorization: Bearer JWT_TOKEN
@@ -227,6 +226,7 @@ Authorization: Bearer JWT_TOKEN
 }
 ```
 
+* **Response**
 ```json
 {
   "success": true,
@@ -243,15 +243,15 @@ Authorization: Bearer JWT_TOKEN
 }
 ```
 
-2. **Delete a Facility (Admin Only)**
-    *   **Route**: `DELETE /api/facility/:id`
-    *   **Headers**:
+5. **Delete a Facility (Admin Only)**
+*   **Route**: `DELETE /api/facility/:id`
+*   **Headers**:
 
 ```plain
-          Authorization: Bearer JWT_TOKEN
+      Authorization: Bearer JWT_TOKEN
 ```
 
-*       *   **Response**:
+*   **Response**:
 
 ```json
 {
@@ -268,13 +268,12 @@ Authorization: Bearer JWT_TOKEN
     }
 }
 
-
 ```
 
 **6\. Get All Facilities**
 
-*       *   **Route**: `GET /api/facilities`
-    *   **Response**:
+*  **Route**: `GET /api/facilities`
+*  **Response**:
 
 ```json
 {
@@ -299,28 +298,27 @@ Authorization: Bearer JWT_TOKEN
 #### Booking Routes
 
   
-
 ### 7\. Check Availability
 
 Check the availability of time slots for booking on a specific date.
 
-*       *   **Route**: `GET /api/check-availability`
+*   **Route**: `GET /api/check-availability`
 
 #### Query Parameters
 
-*       *   **date** (`string`, optional): The date for which availability is to be checked. Format: `DD-MM-YYYY`. If not provided, today's date will be used by default.
+*   **date** (`string`, optional): The date for which availability is to be checked. Format: `DD-MM-YYYY`. If not provided, today's date will be used by default.
 
 #### Response
 
-*       *   **success** (`boolean`): Indicates whether the request was successful.
-    *   **statusCode** (`number`): HTTP status code of the response.
-    *   **message** (`string`): Descriptive message indicating the outcome of the request.
-    *   **data** (`Array` of `Object`): Array containing information about available time slots.
+  *   **success** (`boolean`): Indicates whether the request was successful.
+  *   **statusCode** (`number`): HTTP status code of the response.
+  *   **message** (`string`): Descriptive message indicating the outcome of the request.
+  *   **data** (`Array` of `Object`): Array containing information about available time slots.
 
 ##### Time Slot Object
 
-*       *   **startTime** (`string`): The start time of the available slot.
-    *   **endTime** (`string`): The end time of the available slot.
+  *   **startTime** (`string`): The start time of the available slot.
+  *   **endTime** (`string`): The end time of the available slot.
 
 #### Example Request
 
@@ -363,8 +361,8 @@ GET /api/check-availability?date=15-06-2024
 
 **8\. Create a Booking (User Only)**
 
-*       *   **Route**: `POST /api/bookings`
-    *   **Headers**:
+  *   **Route**: `POST /api/bookings`
+  *   **Headers**:
 
 ```plain
 Authorization: Bearer JWT_TOKEN
@@ -378,7 +376,7 @@ Authorization: Bearer JWT_TOKEN
   "endTime": "13:00"
 }
 ```
-
+* **Response:**
 ```json
 {
   "success": true,
@@ -399,13 +397,14 @@ Authorization: Bearer JWT_TOKEN
 
 **9\. View All Bookings (Admin Only)**
 
-*       *   **Route**: `GET /api/bookings`
-    *   **Headers**:
+  *   **Route**: `GET /api/bookings`
+  *   **Headers**:
 
 ```plain
 Authorization: Bearer JWT_TOKEN
 ```
 
+* **Response:**
 ```json
 {
   "success": true,
@@ -442,8 +441,8 @@ Authorization: Bearer JWT_TOKEN
 
 **10\. View Bookings by User (User Only)**
 
-*       *   **Route**: `GET /api/bookings/user`
-    *   **Headers**:
+  *   **Route**: `GET /api/bookings/user`
+  *   **Headers**:
 
 ```plain
 Authorization: Bearer JWT_TOKEN
@@ -478,8 +477,8 @@ Authorization: Bearer JWT_TOKEN
 
 **11\. Cancel a Booking (User Only)**
 
-*       *   **Route**: `DELETE /api/bookings/:id`
-    *   **Headers**:
+  *   **Route**: `DELETE /api/bookings/:id`
+  *   **Headers**:
 
 ```plain
 Authorization: Bearer JWT_TOKEN
@@ -512,13 +511,13 @@ Authorization: Bearer JWT_TOKEN
 
   
 
-## Bonus Part:
+## Bonus Part (10 Marks):
 
 ### **1\. No Data Found:**
 
 When retrieving data, if the database collection is empty or no matching data is found, return the message: "No data found."
 
-```elixir
+```json
 {
   "success": false,
   "statusCode": 404,
@@ -531,8 +530,6 @@ When retrieving data, if the database collection is empty or no matching data is
 
 Implement proper error handling throughout the application. Use global error handling `middleware` to catch and handle errors, providing appropriate error responses with error messages.
 
-  
-
 **Error Response Object Should include the following properties:**
 
 *   success → false
@@ -544,17 +541,17 @@ Implement proper error handling throughout the application. Use global error han
 
 **Sample Error Response**
 
-```swift
+```json
    {
     "success": false,
     "message": "E11000 duplicate key error collection: univerity-management.students index: email_1 dup key: { email: \\"user2@gmail.com\\" }",
     "errorMessages": [
         {
             "path": "",
-            "message": "E11000 duplicate key error collection: univerity-management.students index: email_1 dup key: { email: \\"user2@gmail.com\\" }"
+            "message": "E11000 duplicate key error collection: project index: email_1 dup key: { email: \\"user2@gmail.com\\" }"
         }
     ],
-    "stack": "MongoServerError: E11000 duplicate key error collection: univerity-management.students index: email_1 dup key: { email: \\"user2@gmail.com\\" }\\n    at H:\\\\next-level-development\\\\university-management-auth-service\\\\node_modules\\\\mongodb\\\\src\\\\operations\\\\insert.ts:85:25\\n    at H:\\\\next-level-development\\\\university-management-auth-service\\\\node_modules\\\\mongodb\\\\src\\\\cmap\\\\connection_pool.ts:574:11\\n    at H:\\\\next-level-development\\\\university-writeOrBuffer (node:internal/streams/writable:391:12)"
+    "stack": "MongoServerError: E11000 duplicate key error collection: project index: email_1 dup key: { email: \\"user2@gmail.com\\" }\\n    at H:\\\\next-level-development\\\\project-management-auth-service\\\\node_modules\\\\mongodb\\\\src\\\\operations\\\\insert.ts:85:25\\n    at H:\\\\next-level-development\\\\university-management-auth-service\\\\node_modules\\\\mongodb\\\\src\\\\cmap\\\\connection_pool.ts:574:11\\n    at H:\\\\next-level-development\\\\university-writeOrBuffer (node:internal/streams/writable:391:12)"
 }
 ```
 

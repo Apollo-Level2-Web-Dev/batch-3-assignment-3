@@ -298,13 +298,13 @@ You have been assigned the task of building the backend for a Bike Renting Syste
         ```
         
 
-**Rental Routes**:
+## **Rental Routes**:
 
 1. **Create Rental**
     - **Route**: /api/rentals (POST)
     - **Request Headers**: Authorization: Bearer jwt_token
-    - User information should be taken from the token
-    - Make sure to change the status of bike availability to false
+    - User information should be extracted from the token
+    - **Bike's availability status should be updated to false**
     - **Request Body**:
         
         ```json
@@ -333,13 +333,13 @@ You have been assigned the task of building the backend for a Bike Renting Syste
         	}
         }
         ```
-        
+        **Important Note:** Upon creating a rental, ensure the bike's isAvailable status is set to false to indicate that it is currently rented out and not available for other users to rent.
 
 1. **Return Bike (Admin Only)**
     - **Route**: /api/rentals/:id/return (PUT)
     - **Request Headers**: Authorization: Bearer jwt_token
     - **Request Body**: Not needed
-    - Make sure to change the status of bike availability to true again
+    - **Bike's availability status should be updated to false**
     - **Hints**: The cost should be calculated based on the start and return time of the rental. For example, if the start time is "2024-06-10T09:00:00Z" and the return time is "2024-06-10T18:00:00Z" (current time), the total rental duration is 9 hours. If the price per hour is $15, the total cost will be 9 * 15 = $135.
     - **Response**:
         

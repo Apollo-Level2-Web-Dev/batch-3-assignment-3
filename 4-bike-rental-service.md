@@ -34,8 +34,8 @@ You have been assigned the task of building the backend for a Bike Renting Syste
     - **model**: The model of the bike.
     - **brand**: The brand of the bike.
 3. **Booking Model**:
-    - **user**: Reference to the User model.
-    - **bike**: Reference to the Bike model.
+    - **userId**: Reference to the User model.
+    - **bikeId**: Reference to the Bike model.
     - **startTime**: The start time of the rental.
     - **returnTime**: The return time of the rental.
     - **totalCost**: The total cost of the rental.

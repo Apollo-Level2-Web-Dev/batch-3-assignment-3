@@ -49,8 +49,8 @@ You have been assigned the task of building the backend for a Car Renting System
 *   **car**: Identifier for the booked car. **_(reference to car model)_**
 *   **startTime**: The start time of the booking. The time will be in 24hr format.
 *   **endTime:** The end time of the booking. The time will be in 24hr format.
-*   **totalCost**: The total cost will be calculated using `startTime`, `endTime` and `pricePerHour` data. By default cost will be `0`.
-*   **isBooked**: Indicates the booking status, whether it's `unconfirmed` or `confirmed` . By default, it will be `unconfirmed` .
+*   **totalCost**: The total cost will be calculated using `startTime`, `endTime` and `pricePerHour` data. By default totalCost will be `0`.
+*   **isBooked**: Indicates the booking status, whether it's `unconfirmed` or `confirmed` . By default, it will be `unconfirmed`.
 
   
 
@@ -66,7 +66,7 @@ You have been assigned the task of building the backend for a Car Renting System
 {
   "name": "John Doe",
   "email": "johndoe@example.com",
-  "role": "user",  // role can be useror admin
+  "role": "user",  // role can be user or admin
   "password": "password123",
   "phone": "1234567890",
   "address": "123 Main St, City, Country"
@@ -288,7 +288,6 @@ You must include "Bearer" at the beginning of the token!
 ```
 
 **Note**: You will have to update all the fields including name, description, color, isElectric, features,
-
 pricePerHour, etc.
 
 ###   
@@ -409,7 +408,6 @@ You must include "Bearer" at the beginning of the token!
    "carId": "60d9c4e4f3b4b544b8b8d1c7",
    "date": "2024-06-15",
    "startTime": "13:00",
-
 }
 ```
 
@@ -452,13 +450,11 @@ You must include "Bearer" at the beginning of the token!
       "updatedAt": "2024-05-29T12:00:00.000Z"
     }
 }
-
-
 ```
 
   
 
-### **10\. Get User's Bookings (Only Accessible by logged in User)**
+### **10\. Get User's Bookings (Only Accessible by logged-in User)**
 
 **Route:** `/api/bookings/my-bookings`(**GET**)
 

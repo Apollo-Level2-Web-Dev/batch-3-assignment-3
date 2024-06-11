@@ -318,22 +318,23 @@ You have been assigned the task of building the backend for a Bike Renting Syste
     - **Response**:
         
         ```json
-          {
-      "success": true,
-      "statusCode": 200,
-      "message": "Rental created successfully",
-      "data": {
-        "_id": "60d9c4e4f3b4b544b8b8d1c4",
-        "userId": "60d9c4e4f3b4b544b8b8d1c3",
-        "bikeId": "60d9c4e4f3b4b544b8b8d1c4",
-        "startTime": "2024-06-10T09:00:00Z",
-        "returnTime": null,
-        "totalCost": 0,
-        "isReturned": false
+        {
+          "success": true,
+          "statusCode": 200,
+          "message": "Rental created successfully",
+          "data": {
+            "_id": "60d9c4e4f3b4b544b8b8d1c4",
+            "userId": "60d9c4e4f3b4b544b8b8d1c3",
+            "bikeId": "60d9c4e4f3b4b544b8b8d1c4",
+            "startTime": "2024-06-10T09:00:00Z",
+            "returnTime": null,
+            "totalCost": 0,
+            "isReturned": false
           }
         }
-            ```
-        **Important Note:** Upon creating a rental, ensure the bike's isAvailable status is set to false to indicate that it is currently rented out and not available for other users to rent.
+        ```
+
+    **Important Note:** Upon creating a rental, ensure the bike's isAvailable status is set to false to indicate that it is currently rented out and not available for other users to rent.
 
 1. **Return Bike (Admin Only)**
     - **Route**: /api/rentals/:id/return (PUT)

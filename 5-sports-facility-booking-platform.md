@@ -1,146 +1,123 @@
-# #5 Sports Facility Booking Platform
+# Sports Facility Booking Platform
 
-You have been assigned to build the backend for a Sports facility booking platform. The main focus of this assignment is to implement Error Handling, CRUD operations, Authentication & Authorization ,Transaction & Rollback (if needed)
+# Assignment: Backend Development for a Sports Facility Booking Platform
+
+  
+
+You are tasked with developing the backend for a sports facility booking platform. This assignment focuses on implementing the following key functionalities: Error Handling, CRUD operations, Authentication & Authorization, and Transaction & Rollback if needed.
+
+  
 
 ## Technology Stack:
 
-*   Use TypeScript as the Programming Language.
-*   Use Express.js as the web framework.
-*   Use `Mongoose` as the Object Data Modeling (ODM) and validation library for MongoDB
-
-## Main Part: (50 Marks)
-
-## Model:
-
-### User Model:
-
-*   **name**: The name of the entity or user.
-*   **email**: The contact email address.
-*   **password**: The account password (Password must be stored in hash format ).
-*   **phone**: The contact phone number.
-*   **role**: The role of the user. (`admin`, `user`)
-*   **address**: The physical address.
+*   **Programming Language**: TypeScript
+*   **Web Framework**: Express.js
+*   **ODM & Validation Library**: Mongoose for MongoDB
 
   
 
-### Facility Model:
-
-*   **name**: The title of the facility.
-*   **description**: A brief description of the facility.
-*   **pricePerHour**: The cost of booking the room per hour in the local currency.
-*   **location:** The physical location of the facility.
-*   **isDeleted**: Indicates whether the item has been marked as deleted (false means it is not deleted).
-
-### Booking Model:
-
-*   **date:** The date of the booking.
-*   **startTime:** The start time of the booking.
-*   **endTime:** The end time of the booking.
-*   **user:** Identifier for the user who made the booking. **(reference to user model)**
-*   **facility:** Identifier for the booked facility. **(reference to facility model)**
-*   **payableAmount**: The calculated amount payable for the booking based on the duration and facility's price per hour.
-*   **isBooked**: Indicates the booking status, whether it's `confirmed`, `unconfirmed`, or `canceled`.
+## Main Requirements (50 Marks)
 
   
 
-### Explanation of `payableAmount` Calculation:
+### Models:
 
   
 
-The `payableAmount` can be calculated using the following formula:
+**User Model:**
 
-**payableAmount**\= (endTime−startTime)×pricePerHour
-
-  
-
-This assumes `endTime` and `startTime` are datetime objects and `pricePerHour` is a numeric value representing the cost per hour.
-
-  
-
-### Example Scenario:
-
-*       *   **Facility's price per hour**: 20 TK
-    *   **Booking start time**: 10:00 AM
-    *   **Booking end time**: 1:00 PM
-
-### Calculation:
-
-1.     1. **Determine the duration of the booking in hours**:
-        *   Start time: 10:00 AM
-        *   End time: 1:00 PM
-        *   Duration: 1:00 PM - 10:00 AM = 3 hours
-2.     1. **Calculate the payable amount**:
-        *   Payable amount = Duration in hours × Price per hour
-        *   Payable amount = 3 hours × 20 tk / hour
-        *   Payable amount = 60 TK
+*   `name`: The name of the user.
+*   `email`: The contact email address.
+*   `password`: The account password (must be hashed).
+*   `phone`: The contact phone number.
+*   `role`: The role of the user (can be 'admin' or 'user').
+*   `address`: The physical address.
 
   
 
-## API Endpoints
+**Facility Model:**
 
-### User Routes
+*   `name`: The title of the facility.
+*   `description`: A brief description of the facility.
+*   `pricePerHour`: The cost of booking the facility per hour.
+*   `location`: The physical location of the facility.
+*   `isDeleted`: Boolean indicating if the facility is marked as deleted (false means not deleted).
 
-### 1\. User Sign Up
+  
 
-**Route**: `/api/auth/signup` (**POST**)
+**Booking Model:**
 
-**Request Body:**
+*   `date`: The date of the booking.
+*   `startTime`: The start time of the booking.
+*   `endTime`: The end time of the booking.
+*   `user`: Reference to the user who made the booking.
+*   `facility`: Reference to the booked facility.
+*   `payableAmount`: The calculated amount payable for the booking.
+*   `isBooked`: Status of the booking (confirmed, unconfirmed, or canceled).
+
+  
+
+### Payable Amount Calculation:
+
+  
+
+Formula:
+
+  
+
+```plain
+payableAmount = (endTime - startTime) * pricePerHour
+```
+
+  
+
+Assume `endTime` and `startTime` are datetime objects and `pricePerHour` is a numeric value representing the cost per hour.
+
+  
+
+**Example:**
+
+*   Facility's price per hour: 20 TK
+*   Booking start time: 10:00 AM
+*   Booking end time: 1:00 PM
+
+  
+
+Calculation:
+
+*   Duration: 3 hours
+*   Payable amount: 3 hours \* 20 TK/hour = 60 TK
+
+  
+
+### API Endpoints
+
+  
+
+#### User Routes
+
+  
+
+1. **User Sign Up**
+    *   **Route**: `POST /api/auth/signup`
+    *   **Request Body**:
 
 ```json
- 
 {
   "name": "Programming Hero",
   "email": "web@programming-hero.com",
   "password": "programming-hero",
   "phone": "01322901105",
-  "role": "admin",    // role can be user or admin
+  "role": "admin", // or 'user'
   "address": "Level-4, 34, Awal Centre, Banani, Dhaka"
-} 
+}
 ```
-
-**Response**:
 
 ```json
 {
   "success": true,
   "statusCode": 200,
   "message": "User registered successfully",
-  "data": {
-   "_id": "60d9c4e4f3b4b544b8b8d1c4",
-   "name": "Programming Hero",
-   "email": "web@programming-hero.com",
-   "role": "admin",
-   "phone": "01322901105",
-   "address": "Level-4, 34, Awal Centre, Banani, Dhaka"
-  }
-}
-```
-
-###   
-
-### 2\. User Login
-
-**Route**: `/api/auth/login`(**POST**)
-
-**Request Body:**
-
-```perl
-{
-    "email": "web@programming-hero.com",
-    "password": "programming-hero",
-}
-```
-
-  
-
-**Response:**
-
-```json
-{
-  "success": true,
-  "statusCode": 200,
-  "message": "User loggedin successfully",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
   "data": {
     "_id": "60d9c4e4f3b4b544b8b8d1c4",
     "name": "Programming Hero",
@@ -152,39 +129,56 @@ This assumes `endTime` and `startTime` are datetime objects and `pricePerHour` i
 }
 ```
 
-###   
-
-### **3\. Create a Facility (Only Accessible by Admin)**
-
-**Route:** `/api/facility`(**POST**)
-
-**Request Headers:**
-
-```javascript
-Authorization: 
-Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF
-tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-
-
-```
-
-You must include "**Bearer**" at the beginning of the token! Do not copy and apply directly from the module. If you blindly follow the modules, you will be a copy master, not a developer.
-
-  
-
-**Request Body:**
+2. **User Login**
+    *   **Route**: `POST /api/auth/login`
+    *   **Request Body**:
 
 ```json
 {
-    "name": "Tennis Court",
-    "description": "Outdoor tennis court with synthetic surface.",
-    "pricePerHour": 30,
-    "location": "456 Sports Ave, Springfield",
-    "isDeleted": false
+  "email": "web@programming-hero.com",
+  "password": "programming-hero"
 }
 ```
 
-**Response Body:**
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "User logged in successfully",
+  "token": "JWT_TOKEN",
+  "data": {
+    "_id": "60d9c4e4f3b4b544b8b8d1c4",
+    "name": "Programming Hero",
+    "email": "web@programming-hero.com",
+    "role": "admin",
+    "phone": "01322901105",
+    "address": "Level-4, 34, Awal Centre, Ban Myeni, Dhaka"
+  }
+}
+```
+
+  
+
+#### Facility Routes
+
+  
+
+1. **Create a Facility (Admin Only)**
+    *   **Route**: `POST /api/facility`
+    *   **Headers**:
+
+```plain
+Authorization: Bearer JWT_TOKEN
+```
+
+```json
+{
+  "name": "Tennis Court",
+  "description": "Outdoor tennis court with synthetic surface.",
+  "pricePerHour": 30,
+  "location": "456 Sports Ave, Springfield"
+}
+```
 
 ```json
 {
@@ -197,94 +191,31 @@ You must include "**Bearer**" at the beginning of the token! Do not copy and app
     "description": "Outdoor tennis court with synthetic surface.",
     "pricePerHour": 30,
     "location": "456 Sports Ave, Springfield",
-    "isDeleted": false,
-  }  
-}
-```
-
-###   
-
-### **4\. Get a Facility**
-
-**Route:** `/api/facilities/:id`(**GET**)
-
-**Response Body:**
-
-```json
-{
-  "success": true,
-  "statusCode": 200,
-  "message": "Facility retrieved successfully",
-  "data": {
-    "_id": "60d9c4e4f3b4b544b8b8d1c5",
-    "name": "Tennis Court",
-    "description": "Outdoor tennis court with synthetic surface.",
-    "pricePerHour": 30,
-    "location": "456 Sports Ave, Springfield",
     "isDeleted": false
-   }
+  }
 }
 ```
+
+`If the facility is unavailable during the requested time slot, an error response is returned.`
 
   
 
-### **5\. Get All Services**
-
-**Route:** `/api/facilities`(**GET**)
-
-**Response Body:**
+1. **Update a Facility (Admin Only)**
+    *   **Route**: `PUT /api/facility/:id`
+    *   **Headers**:
 
 ```plain
-{
-  "success": true,
-  "statusCode": 200,
-  "message": "Facilities retrieved successfully",
-  "data": [
-    {
-    "_id": "60d9c4e4f3b4b544b8b8d1c5",
-    "name": "Tennis Court",
-    "description": "Outdoor tennis court with synthetic surface.",
-    "pricePerHour": 30,
-    "location": "456 Sports Ave, Springfield",
-    "isDeleted": false
-   },
-     {
-    "_id": "60d9c4e4f3b4b544b8b8d1c5",
-    "name": "Tennis Court",
-    "description": "Outdoor tennis court with synthetic surface.",
-    "pricePerHour": 30,
-    "location": "456 Sports Ave, Springfield",
-    "isDeleted": false
-   }
-  ]
-}
+Authorization: Bearer JWT_TOKEN
 ```
-
-  
-
-### **6\. Update Services (Only Accessible by Admin)**
-
-**Route:** `/api/facilities/:id`(**PUT**)
-
-**Request Headers:**
-
-```plain
-Authorization: 
-Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF
-tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-
-You must include "Bearer" at the beginning of the token! 
-```
-
-**Request Body:**
 
 ```json
 {
-    "pricePerHour": 70
+  "name": "Updated Tennis Court",
+  "description": "Updated outdoor tennis court with synthetic surface.",
+  "pricePerHour": 35,
+  "location": "789 Sports Ave, Springfield"
 }
 ```
-
-**Response Body:**
 
 ```json
 {
@@ -292,33 +223,25 @@ You must include "Bearer" at the beginning of the token!
   "statusCode": 200,
   "message": "Facility updated successfully",
   "data": {
-      "_id": "60d9c4e4f3b4b544b8b8d1c5",
-      "name": "Tennis Court",
-       "description": "Outdoor tennis court with synthetic surface.",
-       "pricePerHour": 70,
-       "location": "456 Sports Ave, Springfield",
-       "isDeleted": false
-  }   
+    "_id": "60d9c4e4f3b4b544b8b8d1c5",
+    "name": "Updated Tennis Court",
+    "description": "Updated outdoor tennis court with synthetic surface.",
+    "pricePerHour": 35,
+    "location": "789 Sports Ave, Springfield",
+    "isDeleted": false
+  }
 }
 ```
 
-  
-
-### **7\. Delete a Service (Only Accessible by Admin)**
-
-**Route:** `/api/facilities/:id`(**DELETE**) \[SOFT DELETE \]
-
-**Request Headers:**
+2. **Delete a Facility (Admin Only)**
+    *   **Route**: `DELETE /api/facility/:id`
+    *   **Headers**:
 
 ```plain
-Authorization: 
-Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF
-tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-
-You must include "Bearer" at the beginning of the token! 
+          Authorization: Bearer JWT_TOKEN
 ```
 
-**Response Body:**
+*       *   **Response**:
 
 ```json
 {
@@ -327,390 +250,268 @@ You must include "Bearer" at the beginning of the token!
   "message": "Facility deleted successfully",
   "data": {
       "_id": "60d9c4e4f3b4b544b8b8d1c5",
+      "name": "Updated Tennis Court",
+      "description": "Updated outdoor tennis court with synthetic surface.",
+      "pricePerHour": 35,
+      "location": "789 Sports Ave, Springfield",
+      "isDeleted": false
+    }
+}
+
+
+```
+
+**6\. Get All Facilities**
+
+*       *   **Route**: `GET /api/facilities`
+    *   **Response**:
+
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Facilities retrieved successfully",
+  "data": [
+    {
+      "_id": "60d9c4e4f3b4b544b8b8d1c5",
       "name": "Tennis Court",
-       "description": "Outdoor tennis court with synthetic surface.",
-       "pricePerHour": 70,
-       "location": "456 Sports Ave, Springfield",
-       "isDeleted":true  //soft delete.
-  }
+      "description": "Outdoor tennis court with synthetic surface.",
+      "pricePerHour": 30,
+      "location": "456 Sports Ave, Springfield",
+      "isDeleted": false
+    }
+  ]
 }
 ```
 
   
 
-### 8.**Create Slot (Only Accessible by Admin)**
+#### Booking Routes
 
-**Route:** `/api/facilities/slots`(**POST**)
+  
 
-**Request Headers:**
+### 7\. Check Availability
 
-```plain
-Authorization: 
-Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF
-tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+Check the availability of time slots for booking on a specific date.
 
-You must include "Bearer" at the beginning of the token! 
+*       *   **Route**: `GET /api/check-availability`
+
+#### Query Parameters
+
+*       *   **date** (`string`, optional): The date for which availability is to be checked. Format: `DD-MM-YYYY`. If not provided, today's date will be used by default.
+
+#### Response
+
+*       *   **success** (`boolean`): Indicates whether the request was successful.
+    *   **statusCode** (`number`): HTTP status code of the response.
+    *   **message** (`string`): Descriptive message indicating the outcome of the request.
+    *   **data** (`Array` of `Object`): Array containing information about available time slots.
+
+##### Time Slot Object
+
+*       *   **startTime** (`string`): The start time of the available slot.
+    *   **endTime** (`string`): The end time of the available slot.
+
+#### Example Request
+
+```sql
+GET /api/check-availability?date=15-06-2024
 ```
 
-**Request Body:**
+#### Example Response
+
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Availability checked successfully",
+  "data": [
+      {
+          "startTime": "08:00",
+          "endTime": "10:00"
+      },
+      {
+          "startTime": "14:00",
+          "endTime": "16:00"
+      }
+   ]
+}
+```
+
+  
+
+**Hints**:
+
+*   Parse the optional `date` query parameter from the request URL. If not provided, use today's date.
+*   Retrieve bookings for the specified date from your database using Mongoose.
+*   Define a function to find available time range based on the bookings retrieved. Compare booked time range to the total available time slots for the day.
+*   Return a response containing the available time slots in the specified format. Use `res.json()` to send the response.
+
+  
+
+  
+
+**8\. Create a Booking (User Only)**
+
+*       *   **Route**: `POST /api/bookings`
+    *   **Headers**:
 
 ```plain
+Authorization: Bearer JWT_TOKEN
+```
+
+```json
 {
+  "facility": "60d9c4e4f3b4b544b8b8d1c5",
+  "date": "2024-06-15",
+  "startTime": "10:00",
+  "endTime": "13:00"
+}
+```
+
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Booking created successfully",
+  "data": {
+    "_id": "60d9c4e4f3b4b544b8b8d1c6",
     "facility": "60d9c4e4f3b4b544b8b8d1c5",
     "date": "2024-06-15",
-    "startTime": "09:00",
-    "endTime": "14:00"
-}
-```
-
-**Response Body:**
-
-```json
-{
-    "success": true,
-    "statusCode": 200,
-    "message": "Slots created successfully",
-    "data": [
-        {
-            "_id": "60d9c4e4f3b4b544b8b8d1c6",
-            "facility": "60d9c4e4f3b4b544b8b8d1c5",
-            "date": "2024-06-15",
-            "startTime": "09:00",
-            "endTime": "10:00", //look at the starting point
-            "isBooked": "available"
-        },
-        {
-            "_id": "60d9c4e4f3b4b544b8b8d1c7",
-            "facility": "60d9c4e4f3b4b544b8b8d1c5",
-            "date": "2024-06-15",
-            "startTime": "10:00",
-            "endTime": "11:00",
-            "isBooked": "available"
-        },
-        {
-            "_id": "60d9c4e4f3b4b544b8b8d1c7",
-            "facility": "60d9c4e4f3b4b544b8b8d1c5",
-            "date": "2024-06-15",
-            "startTime": "11:00",
-            "endTime": "12:00",
-            "isBooked": "available"
-        },
-        {
-            "_id": "60d9c4e4f3b4b544b8b8d1c7",
-            "facility": "60d9c4e4f3b4b544b8b8d1c5",
-            "date": "2024-06-15",
-            "startTime": "12:00",
-            "endTime": "13:00",
-            "isBooked": "available"
-        },
-        {
-            "_id": "60d9c4e4f3b4b544b8b8d1c7",
-            "facility": "60d9c4e4f3b4b544b8b8d1c5",
-            "date": "2024-06-15",
-            "startTime": "13:00",
-            "endTime": "14:00",  //look at the ending point
-            "isBooked": "available"
-        }
-    ]
-}
-```
-
-### **Hints for creating slots:**
-
-  
-
-1. **Retrieve Service Duration**: Assume the service duration is provided or retrieved from the database. For this example, we'll use a service duration of 60 minutes.
-2. **Parse Request Body**: Extract the necessary information from the request body:
-    *   Start time: "09:00"
-    *   End time: "14:00"
-    *   Service duration: 60 minutes
-3. **Calculate the Total Duration**:
-    *   Convert the start time and end time to minutes since midnight.
-    *   Calculate the total duration between the start and end times in minutes.
-4. **Generate Slot Time Intervals**:
-    *   Determine the number of slots by dividing the total duration by the service duration.
-    *   Generate start and end times for each slot.
-5. **Example Calculation**
-    1. **Step-by-Step Breakdown**:
-    2. **Service Duration**: 60 minutes
-    3. **Start Time and End Time**:
-        *   Start Time: "09:00"
-        *   End Time: "14:00"
-    4. **Convert Times to Minutes**:
-        *   "09:00" → 9 \* 60 + 0 = 540 minutes since midnight
-        *   "14:00" → 14 \* 60 + 0 = 840 minutes since midnight
-    5. **Calculate Total Duration**:
-        *   Total Duration: 840 minutes - 540 minutes = 300 minutes
-    6. **Number of Slots**:
-        *   Number of Slots: 300 minutes / 60 minutes per slot = 5 slots
-    7. **Generate Slot Time Intervals**:
-        *   Slot 1: Start Time: "09:00", End Time: "10:00"
-        *   Slot 2: Start Time: "10:00", End Time: "11:00"
-        *   Slot 3: Start Time: "11:00", End Time: "12:00"
-        *   Slot 4: Start Time: "12:00", End Time: "13:00"
-        *   Slot 5: Start Time: "13:00", End Time: "14:00"
-
-  
-
-### **9\. Get available slots**
-
-**Route:** `/api/slots/availability`(**GET**)
-
-**Query Parameters:**
-
-*   `date`: (Optional) The specific date for which available slots are requested (format: YYYY-MM-DD).
-*   `facilityId`: (Optional) ID of the service for which available slots are requested.
-
-  
-
-**Request Example:**
-
-```plain
-  GET /api/slots/availability?date=2024-06-15&facilityId=60d9c4e4f3b4b544b8b8d1c5
-```
-
-  
-
-**Response:**
-
-```json
-{
-    "success": true,
-    "statusCode": 200,
-    "message": "Available slots retrieved successfully",
-    "data": [
-        {
-            "_id": "60d9c4e4f3b4b544b8b8d1c6",
-            "facility": 
-                     {
-                          "_id": "60d9c4e4f3b4b544b8b8d1c5",
-                          "name": "Tennis Court",
-                           "description": "Outdoor tennis court with synthetic surface.",
-                           "pricePerHour": 70,
-                           "location": "456 Sports Ave, Springfield",
-                           "isDeleted": false
-                      },
-            "date": "2024-06-15",
-            "startTime": "09:00",
-            "endTime": "09:30",
-            "isBooked": "available"
-        },
-        {
-            "_id": "60d9c4e4f3b4b544b8b8d1c9",
-            "facility": 
-                       {
-                          "_id": "60d9c4e4f3b4b544b8b8d1c5",
-                          "name": "Tennis Court",
-                           "description": "Outdoor tennis court with synthetic surface.",
-                           "pricePerHour": 70,
-                           "location": "456 Sports Ave, Springfield",
-                           "isDeleted": false
-                      },
-            "date": "2024-06-15",
-            "startTime": "10:00",
-            "endTime": "10:30",
-            "isBooked": "canceled"
-        }
-    ]
-}
-```
-
-  
-
-### **10\. Book a Service (Only Accessible by User)**
-
-**Route:** `/api/bookings`(**POST**)
-
-**Request Headers:**
-
-```plain
-Authorization: 
-Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF
-tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-
-You must include "Bearer" at the beginning of the token! 
-```
-
-**Request Body:**
-
-```plain
-{
-  "slotId": "60d9c4e4f3b4b544b8b8d1c9", // Slot ID
-  "serviceId": "60d9c4e4f3b4b544b8b8d1c5" // Service ID
-  "make":"Toyota",
-  "model":"Corona Premio",
-  "year":"1997",
-  "registrationNumber": "Chatto Metro Ga 11-4139",
-}
-```
-
-**Response Body:**
-
-```plain
-{
-  "success": true,
-  "statusCode": 200,
-  "message": "Slot booked successfully",
-  "data": {
-    "_id": "60d9c4e4f3b4b544b8b8d1c9",
-    "user": {
-      "name": "Programming Hero",
-      "email": "web@programming-hero.com",
-      "phone": "01322901105",
-      "role":"user"
-      "address": "Level-4, 34, Awal Centre, Banani, Dhaka"
-    }, 
-    "slot": {
-      "_id": "60d9c4e4f3b4b544b8b8d1c7",
-      "date": "2024-06-15",
-      "time": "09:00 AM",
-      "service": "60d9c4e4f3b4b544b8b8d1c5",
-      "isBooked": "confirmed"
-    },
-    "service": {
-       "name": "Basic Wash",
-       "description": "Exterior wash and dry",
-       "price": 700,
-       "duration": 30,
-       "isDeleted":false.
-       },
-   "make":"Toyota",
-   "model":"Corona Premio",
-   "year":"1997",
-   "registrationNumber": "Chatto Metro Ga 11-4139",
-   "isBooked": "confirmed"
+    "startTime": "10:00",
+    "endTime": "13:00",
+    "user": "60d9c4e4f3b4b544b8b8d1c4",
+    "payableAmount": 90,
+    "isBooked": true
   }
 }
 ```
 
-  
+**9\. View All Bookings (Admin Only)**
 
-### **11\. Get All Bookings**
-
-**Route:** `/api/bookings`(**GET**)
-
-**Request Headers:**
+*       *   **Route**: `GET /api/bookings`
+    *   **Headers**:
 
 ```plain
-Authorization: 
-Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF
-tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-
-You must include "Bearer" at the beginning of the token! 
-
-
+Authorization: Bearer JWT_TOKEN
 ```
 
-**Response Body:**
-
-```plain
+```json
 {
   "success": true,
   "statusCode": 200,
   "message": "Bookings retrieved successfully",
   "data": [
     {
-      "_id": "60d9c4e4f3b4b544b8b8d1ca",
+      "_id": "60d9c4e4f3b4b544b8b8d1c6",
+      "facility": {
+        "_id": "60d9c4e4f3b4b544b8b8d1c5",
+        "name": "Tennis Court",
+        "description": "Outdoor tennis court with professional-grade surface.",
+        "pricePerHour": 30,
+        "location": "123 Main Street",
+        "isDeleted": false
+      },
+      "date": "2024-06-15",
+      "startTime": "10:00",
+      "endTime": "13:00",
       "user": {
+        "_id": "60d9c4e4f3b4b544b8b8d1c4",
         "name": "Programming Hero",
-        "email": "web@programming-hero.com",
-        "phone": "01322901105",
-        "address": "Level-4, 34, Awal Centre, Banani, Dhaka"
+        "email": "programming.hero@example.com",
+        "phone": "+1234567890",
+        "role": "user",
+        "address": "456 Elm Street"
       },
-      "slot": {
-        "_id": "60d9c4e4f3b4b544b8b8d1c7",
-        "date": "2024-06-15",
-        "time": "09:00 AM",
-        "service": "60d9c4e4f3b4b544b8b8d1c5",
-        "isBooked": "confirmed"
-      },
-      "service": {
-         "name": "Basic Wash",
-         "description": "Exterior wash and dry",
-         "price": 700,
-         "duration": 30,
-         "isDeleted":false.
-         },
-     "make":"Toyota",
-     "model":"Corona Premio",
-     "year":"1997",
-     "registrationNumber": "Chatto Metro Ga 11-4139",
-     "isBooked": "confirmed"
-    },
-    //...additional bookings...
+      "payableAmount": 90,
+      "isBooked": true
+    }
   ]
 }
 ```
 
-  
+**10\. View Bookings by User (User Only)**
 
-### **12\. Get User's Bookings (Only Accessible by User)**
-
-**Route:** `/api/my-bookings`(**GET**)
-
-**Request Headers:**
+*       *   **Route**: `GET /api/bookings/user`
+    *   **Headers**:
 
 ```plain
-Authorization: 
-Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF
-tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-
-You must include "Bearer" at the beginning of the token! 
-
-
+Authorization: Bearer JWT_TOKEN
 ```
 
-**Response Body:**
-
-```plain
+```json
 {
   "success": true,
   "statusCode": 200,
   "message": "Bookings retrieved successfully",
   "data": [
     {
-      "_id": "60d9c4e4f3b4b544b8b8d1ca",
-      "user": {
-        "name": "Programming Hero",
-        "email": "web@programming-hero.com",
-        "phone": "01322901105",
-        "role":"user"
-        "address": "Level-4, 34, Awal Centre, Banani, Dhaka"
+      "_id": "60d9c4e4f3b4b544b8b8d1c6",
+      "facility": {
+        "_id": "60d9c4e4f3b4b544b8b8d1c5",
+        "name": "Tennis Court",
+        "description": "Outdoor tennis court with professional-grade surface.",
+        "pricePerHour": 30,
+        "location": "123 Main Street",
+        "isDeleted": false
       },
-      "slot": {
-        "_id": "60d9c4e4f3b4b544b8b8d1c7",
-        "date": "2024-06-15",
-        "time": "09:00 AM",
-        "service": "60d9c4e4f3b4b544b8b8d1c5",
-        "isBooked": "confirmed"
-      },
-      "service": {
-         "name": "Basic Wash",
-         "description": "Exterior wash and dry",
-         "price": 700,
-         "duration": 30,
-         "isDeleted":false.
-         },
-      "isBooked": "confirmed"
-    },
-    ...additional bookings...
+      "date": "2024-06-15",
+      "startTime": "10:00",
+      "endTime": "13:00",
+      "user": "60d9c4e4f3b4b544b8b8d1c4",
+      "payableAmount": 90,
+      "isBooked": true
+    }
   ]
 }
-
-
 ```
 
-###   
+**11\. Cancel a Booking (User Only)**
+
+*       *   **Route**: `DELETE /api/bookings/:id`
+    *   **Headers**:
+
+```plain
+Authorization: Bearer JWT_TOKEN
+```
+
+```json
+{
+  "success": true,
+  "statusCode": 200,
+  "message": "Booking cancelled successfully",
+  "data": {
+      "_id": "60d9c4e4f3b4b544b8b8d1c6",
+      "facility": {
+        "_id": "60d9c4e4f3b4b544b8b8d1c5",
+        "name": "Tennis Court",
+        "description": "Outdoor tennis court with professional-grade surface.",
+        "pricePerHour": 30,
+        "location": "123 Main Street",
+        "isDeleted": false
+      },
+      "date": "2024-06-15",
+      "startTime": "10:00",
+      "endTime": "13:00",
+      "user": "60d9c4e4f3b4b544b8b8d1c4",
+      "payableAmount": 90,
+      "isBooked": true 
+    }
+}
+```
+
+  
 
 ## Bonus Part:
 
-### [**1.No**](http://1.no/) **Data Found:**
+### **1\. No Data Found:**
 
 When retrieving data, if the database collection is empty or no matching data is found, return the message: "No data found."
 
 ```elixir
 {
   "success": false,
+  "statusCode": 404,
   "message": "No Data Found",
   "data":[]
 }
@@ -718,7 +519,7 @@ When retrieving data, if the database collection is empty or no matching data is
 
 ### **2.Error Handling:**
 
-Implement proper error handling throughout the application. Use global error handling `middleware` to catch and handle errors, providing appropriate error responses with status codes and error messages.
+Implement proper error handling throughout the application. Use global error handling `middleware` to catch and handle errors, providing appropriate error responses with error messages.
 
   
 
@@ -749,7 +550,7 @@ Implement proper error handling throughout the application. Use global error han
 
 ###   
 
-### **3.Not Found Route:**
+### **3\. Not Found Route:**
 
 Implement a global "Not Found" handler for unmatched routes. When a route is not found, respond with a generic message: "Not Found.”
 
@@ -760,3 +561,7 @@ Implement a global "Not Found" handler for unmatched routes. When a route is not
   "message": "Not Found",
 }
 ```
+
+### 4\. Zod Validation
+
+The API employs Zod for input validation, ensuring data consistency. When validation fails, a `400 Bad Request` status code is returned, accompanied by detailed error messages specifying the erroneous fields and reasons.

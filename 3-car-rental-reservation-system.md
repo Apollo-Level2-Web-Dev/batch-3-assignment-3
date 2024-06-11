@@ -243,7 +243,7 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
 
   
 
-### **6\. Update A Car (Only Accessible by Admin)**
+### **6\. Update A Car (Only Accessible to the Admin)**
 
 **Route:** `/api/cars/:id`(**PUT**)
 
@@ -260,7 +260,7 @@ You must include "Bearer" at the beginning of the token!
 
 ```json
 {
-     "color": "Black",  // you can update any fields dynamically.
+     "color": "Black",  // we will have to update all the fields including name, description, color, isElectric, features, pricePerHour, etc.
 }
 ```
 
@@ -287,12 +287,9 @@ You must include "Bearer" at the beginning of the token!
 }
 ```
 
-**Note**: You will have to update all the fields including name, description, color, isElectric, features,
-pricePerHour, etc.
-
 ###   
 
-### **7\. Delete A Car (Only Accessible by Admin)**
+### **7\. Delete A Car (Only Accessible to the Admin)**
 
 **Route:** `/api/cars/:id`(**DELETE**) \[SOFT DELETE\]
 
@@ -330,7 +327,7 @@ You must include "Bearer" at the beginning of the token!
 
   
 
-### **8\. Get All Bookings (Accessible by Admin)**
+### **8\. Get All Bookings (Accessible to the Admin)**
 
 **Route:** `/api/bookings`(**GET**)
 
@@ -385,7 +382,7 @@ Example Request:
 
   
 
-### **9\. Book a Car (Only Accessible by User)**
+### **9\. Book a Car (Only Accessible to the User)**
 
 **Route:** `/api/bookings`(**POST**)
 
@@ -424,7 +421,7 @@ You must include "Bearer" at the beginning of the token!
       "_id": "60d9c4e4f3b4b544b8b8d1c7",
       "date": "2024-06-15",
       "startTime": "13:00",
-      "endTime": "00:00",
+      "endTime": null, // it will be null by default, when booked. It will be updated by the admin, when the car is returned.
       "user": {
           "_id": "6071f0fbf98b210012345688",
           "name": "Tom",
@@ -444,7 +441,7 @@ You must include "Bearer" at the beginning of the token!
         "createdAt": "2024-04-28T12:00:00.000Z",
         "updatedAt": "2024-04-28T12:00:00.000Z"
       },
-      "totalCost": 0
+      "totalCost": 0, // it will be 0 by default, when booked. It will be calculate and update by the admin, when the car is returned.
       "isBooked": "confirmed", 
       "createdAt": "2024-04-28T12:00:00.000Z",
       "updatedAt": "2024-05-29T12:00:00.000Z"
@@ -454,7 +451,7 @@ You must include "Bearer" at the beginning of the token!
 
   
 
-### **10\. Get User's Bookings (Only Accessible To User)**
+### **10\. Get User's Bookings (Only Accessible To the User)**
 
 **Route:** `/api/bookings/my-bookings`(**GET**)
 
@@ -567,7 +564,7 @@ You must include "Bearer" at the beginning of the token!
         "isElectric": true,
         "features": ["AC", "Bluetooth", "Long Range Battery"],
         "pricePerHour": 500,
-        "status": "available" // status updated
+        "status": "available" // The status of the car is updated to "available" indicating it is now ready for booking, following its return. 
         "isDeleted": false,
         "createdAt": "2024-04-28T12:00:00.000Z",
         "updatedAt": "2024-04-28T12:00:00.000Z"

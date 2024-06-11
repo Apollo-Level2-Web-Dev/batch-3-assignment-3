@@ -8,7 +8,7 @@
   (Batch-3)
 </p>
 
-🎉 **Welcome to Assignment 3 !!**.
+🎉 **Welcome to Assignment 3 !!**
 
 ## 🛠️ Technology You Can Use
 

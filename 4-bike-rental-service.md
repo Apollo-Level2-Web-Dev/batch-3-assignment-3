@@ -374,8 +374,8 @@ You have been assigned the task of building the backend for a Bike Renting Syste
           "data": [
             {
               "_id": "60d9c4e4f3b4b544b8b8d1c4",
-              "user": "60d9c4e4f3b4b544b8b8d1c3",
-              "bike": "60d9c4e4f3b4b544b8b8d1c4",
+              "userId": "60d9c4e4f3b4b544b8b8d1c3",
+              "bikeId": "60d9c4e4f3b4b544b8b8d1c4",
               "startTime": "2024-06-10T09:00:00Z",
               "returnTime": "2024-06-10T18:00:00Z",
               "totalCost": 135,

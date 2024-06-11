@@ -551,7 +551,7 @@ You must include "Bearer" at the beginning of the token!
       "_id": "60d9c4e4f3b4b544b8b8d1c7",
       "date": "2024-06-15",
       "startTime": "13:00",
-      "endTime: "15:00",
+      "endTime": "15:00",
       "user": {
           "_id": "6071f0fbf98b210012345688",
           "name": "Tom",

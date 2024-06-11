@@ -7,6 +7,25 @@
 You have been assigned the task of building the backend for a Bike Renting System. The main focus of this assignment is to implement error handling, CRUD operations, authentication, and authorization, Transaction & Rollback (If necessary)
 ---
 
+### Story
+
+---
+
+In the vibrant coastal town of Cox's Bazar, famous for its long Inani beach, tourism was thriving. The town, with its scenic beauty and lively atmosphere, was a favorite spot for tourists and locals alike. Seeing an opportunity, Jhankar Mahbub, a local entrepreneur with a passion for technology, decided to start a bike rental service to cater to both tourists and locals.
+
+Jhankar Mahbub envisioned a seamless bike rental system where users could easily rent bikes online. He wanted a backend system that would handle user registrations, bike availability, and booking management efficiently. To achieve this, he planned to hire a developer to build the backend for the Bike Rental Reservation System.
+
+**Models:**
+
+1. **User Model**
+2. **Bike Model**
+3. **Booking Model**
+
+Jhankar's bike rental service quickly became popular. Tourists and locals loved the convenience of booking bikes online and exploring Cox's Bazar. With a robust backend system in place, Jhankar could efficiently manage his business, and his customers enjoyed a seamless rental experience.
+
+---
+
+
 ### Technology Stack:
 
 - **Programming Language**: TypeScript

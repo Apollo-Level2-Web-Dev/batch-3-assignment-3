@@ -562,6 +562,17 @@ Implement a global "Not Found" handler for unmatched routes. When a route is not
 }
 ```
 
-### 4\. Zod Validation
+### **4\. Authentication Middleware:**
 
-The API employs Zod for input validation, ensuring data consistency. When validation fails, a `400 Bad Request` status code is returned, accompanied by detailed error messages specifying the erroneous fields and reasons.
+Implement an Authentication Middleware to authenticate your application. Ensures that only user  and admin can access their own accessible routes.
+
+```json
+{
+  "success": false,
+  "statusCode": 401,
+  "message": "You have no access to this route",
+}
+```
+
+5. Zod Validation
+The API employs Zod for input validation, ensuring data consistency. When validation fails, a 400 Bad Request status code is returned, accompanied by detailed error messages specifying the erroneous fields and reasons.

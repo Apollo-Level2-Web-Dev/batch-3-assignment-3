@@ -339,7 +339,7 @@ You have been assigned the task of building the backend for a Bike Renting Syste
     - **Route**: /api/rentals/:id/return (PUT)
     - **Request Headers**: Authorization: Bearer jwt_token
     - **Request Body**: Not needed
-    - **Bike's availability status should be updated to false**
+    - **Bike's availability status should be updated to true**
     - **Hints**: The cost should be calculated based on the start and return time of the rental. For example, if the start time is "2024-06-10T09:00:00Z" and the return time is "2024-06-10T18:00:00Z" (current time), the total rental duration is 9 hours. If the price per hour is $15, the total cost will be 9 * 15 = $135.
     - **Response**:
         

@@ -897,17 +897,5 @@ Implement an Authentication Middleware to authenticate your application. Ensures
 }
 ```
 
-5. Zod Validation
+### **5\. Zod Validation:**
 The API employs Zod for input validation, ensuring data consistency. When validation fails, a 400 Bad Request status code is returned, accompanied by detailed error messages specifying the erroneous fields and reasons.
-
-
-  
-
-### Additional Notes
-
-*   The authentication token should be included in the `Authorization` header as `Bearer <token>`.
-*   Only users with the `admin` role can create, update, and delete rooms and manage bookings.
-*   The `isConfirmed` field for bookings indicates whether the booking is confirmed by an admin.
-*   Soft delete for rooms and bookings is indicated by setting the `isDeleted` field to `true`.
-
-This structure ensures the separation of concerns and role-based access control, providing a secure and efficient way to manage the meeting room booking system.

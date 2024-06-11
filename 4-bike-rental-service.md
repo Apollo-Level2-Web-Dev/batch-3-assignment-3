@@ -11,7 +11,7 @@ You have been assigned the task of building the backend for a Bike Renting Syste
 
 - **Programming Language**: TypeScript
 - **Web Framework**: Express.js
-- **ODM & Validation Library**: zod, Mongoose for MongoDB
+- **ODM & Validation Library**: Zod, Mongoose for MongoDB
 
 ### Main Part: (50 Marks)
 

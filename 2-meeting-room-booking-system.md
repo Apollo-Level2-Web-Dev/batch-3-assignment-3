@@ -105,8 +105,8 @@ As the development progresses, you implement robust validation and error handlin
 
 **2\. User Login**
 
-*       *   **Route:** `/api/auth/login` (POST)
-    *   **Request Body:**
+-   _*Route:*_ `/api/auth/login` (POST)
+-   **Request Body:**
 
 ```json
 {
@@ -115,7 +115,7 @@ As the development progresses, you implement robust validation and error handlin
 }
 ```
 
-Response:
+- Response:
 
 ```json
 {
@@ -142,8 +142,8 @@ Response:
 
 **3\. Create Room (Only Accessible by Admin)**
 
-*       *   **Route:** `/api/rooms` (POST)
-    *   **Request Headers:**
+-   _*Route:*_ `/api/rooms` (POST)
+-   **Request Headers:**
 
 ```plain
 Authorization: 
@@ -153,7 +153,7 @@ tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_a
 You must include "Bearer" at the beginning of the token! Do not copy and apply directly from the module. If you blindly follow the modules, you will be a copy master, not a developer.
 ```
 
-*       *   **Request Body:**
+-    _*Request Body:*_
 
 ```json
 {
@@ -168,7 +168,7 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
 
 ```
 
-*       *   **Response:**
+-   _*Response:*_
 
 ```json
 {
@@ -192,8 +192,8 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
 
 **4\. Get a Room**
 
-*       *   **Route:** `/api/rooms/:id` (GET)
-    *   **Response:**
+-    _*Route:*_ `/api/rooms/:id` (GET)
+-    _*Response:*_
 
 ```json
 {
@@ -217,8 +217,8 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
 
 **5\. Get All Rooms**
 
-*       *   **Route:** `/api/rooms` (GET)
-    *   **Response:**
+-    _*Route:*_ `/api/rooms` (GET)
+-    **Response:**
 
 ```json
 {
@@ -255,8 +255,8 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
 
 **6\. Update Room (Only Accessible by Admin)**
 
-*       *   **Route:** `/api/rooms/:id` (PUT)
-    *   **Request Headers:**
+-    _*Route:*_ `/api/rooms/:id` (PUT)
+-   **Request Headers:**
 
 ```plain
 Authorization: 
@@ -266,7 +266,7 @@ tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_a
 You must include "Bearer" at the beginning of the token! Do not copy and apply directly from the module. If you blindly follow the modules, you will be a copy master, not a developer.
 ```
 
-*       *   **Request Body:**
+-    **Request Body:**
 
 ```json
 {
@@ -274,7 +274,7 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
 }
 ```
 
-*       *   **Response:**
+-    **Response:**
 
 ```json
 {
@@ -296,8 +296,8 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
 
 **7\. Delete a Room (Soft Delete, Only Accessible by Admin)**
 
-*       *   **Route:** `/api/rooms/:id` (DELETE)
-    *   **Request Headers:**
+-   _*Route:*_ `/api/rooms/:id` (DELETE)
+-   **Request Headers:**
 
 ```plain
 Authorization: 
@@ -307,7 +307,7 @@ tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_a
 You must include "Bearer" at the beginning of the token! Do not copy and apply directly from the module. If you blindly follow the modules, you will be a copy master, not a developer.
 ```
 
-*       *   **Response:**
+-    **Response:**
 
 ```json
 {
@@ -335,7 +335,7 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
 
 8\. **Create Slot (Only Accessible by Admin)**
 
-**Route:** `/api/slots`(**POST**)
+-   _*Route:*_ `/api/slots`(**POST**)
 
 **Request Headers:**
 
@@ -532,8 +532,8 @@ or
 
 **10\. Create a Booking (Only Accessible by Authenticated User)**
 
-*       *   **Route:** `/api/bookings` (POST)
-    *   **Request Headers:**
+-    _*Route:*_ `/api/bookings` (POST)
+-   **Request Headers:**
 
 ```javascript
 Authorization: 
@@ -543,7 +543,7 @@ tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_a
 You must include "Bearer" at the beginning of the token! Do not copy and apply directly from the module. If you blindly follow the modules, you will be a copy master, not a developer.
 ```
 
-*       *   **Request Body:**
+-    **Request Body:**
 
 ```json
 {
@@ -554,7 +554,7 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
 }
 ```
 
-*       *   **Response:**
+-   **Response:**
 
 ```json
 {
@@ -615,8 +615,8 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
 
 **11\. Get All Bookings (Only Accessible by Admin)**
 
-*       *   **Route:** `/api/bookings` (GET)
-    *   **Request Headers:**
+-   _*Route:*_ `/api/bookings` (GET)
+-   **Request Headers:**
 
 ```plain
 Authorization: 
@@ -626,7 +626,7 @@ tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_a
 You must include "Bearer" at the beginning of the token! Do not copy and apply directly from the module. If you blindly follow the modules, you will be a copy master, not a developer.
 ```
 
-*       *   **Response:**
+-   **Response:**
 
 ```json
 {
@@ -685,8 +685,8 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
 
 **12\. Get User's Bookings (Only Accessible by Authenticated User)**
 
-*       *   **Route:** `/api/my-bookings`(**GET**)
-    *   **Request Headers:**
+-   _*Route:*_ `/api/my-bookings`(**GET**)
+-   **Request Headers:**
 
 ```javascript
 Authorization: 
@@ -696,7 +696,7 @@ tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_a
 You must include "Bearer" at the beginning of the token! 
 ```
 
-*       *   **Response:**
+-   **Response:**
 
 ```json
 {
@@ -748,8 +748,8 @@ You must include "Bearer" at the beginning of the token!
 
 **13\. Update Booking (Only Accessible by Admin)**
 
-*       *   **Route:** `/api/bookings/:id` (PUT)
-    *   **Request Headers:**
+-   _*Route:*_ `/api/bookings/:id` (PUT)
+-   **Request Headers:**
 
 ```javascript
 Authorization: 
@@ -759,7 +759,7 @@ tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_a
 You must include "Bearer" at the beginning of the token! Do not copy and apply directly from the module. If you blindly follow the modules, you will be a copy master, not a developer.
 ```
 
-*       *   **Request Body:**
+-   **Request Body:**
 
 ```json
 {
@@ -792,8 +792,8 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
 
 **14\. Delete Booking (Soft Delete, Only Accessible by Admin)**
 
-*       *   **Route:** `/api/bookings/:id` (DELETE)
-    *   **Request Headers:**
+-   _*Route:*_ `/api/bookings/:id` (DELETE)
+-   **Request Headers:**
 
 ```javascript
 Authorization: 
@@ -803,7 +803,7 @@ tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_a
 You must include "Bearer" at the beginning of the token! Do not copy and apply directly from the module. If you blindly follow the modules, you will be a copy master, not a developer.
 ```
 
-*       *   **Response:**
+-   **Response:**
 
 ```json
 {

@@ -642,8 +642,7 @@ Implement proper error handling throughout the application. Use global error han
              (node:internal/streams/writable:391:12)"
 }
 ```
-
-###   
+ 
 
 ### **3\. Not Found Route:**
 
@@ -656,3 +655,13 @@ Implement a global "Not Found" handler for unmatched routes. When a route is not
   "message": "Not Found",
 }
 ```
+
+
+4. Authentication Middleware:
+Implement a Authenticationi Middleware to authenticete your application. Ensures that only user  and admin can access their own accecible routes.
+{
+  "success": true,
+  "statusCode": 401,
+  "message": "You have no access to this route",
+}
+

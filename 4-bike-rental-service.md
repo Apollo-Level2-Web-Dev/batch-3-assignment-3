@@ -43,7 +43,7 @@ You have been assigned the task of building the backend for a Bike Renting Syste
 
 ### API Endpoints:
 
-**User Routes**:
+## **User Routes**:
 
 1. **Sign Up**
     - **Route**: /api/auth/signup (POST)

@@ -74,7 +74,8 @@ Jhankar's bike rental service quickly became popular. Tourists and locals loved 
           "email": "john@example.com",
           "password": "password123",
           "phone": "1234567890",
-          "address": "123 Main St, Anytown"
+          "address": "123 Main St, Anytown",
+          "role" : "admin"
         }
         
         ```

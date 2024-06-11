@@ -260,7 +260,7 @@ You must include "Bearer" at the beginning of the token!
 
 ```json
 {
-     "color": "Black",  
+     "color": "Black",  // you can update any fields dynamically.
 }
 ```
 

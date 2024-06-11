@@ -657,11 +657,16 @@ Implement a global "Not Found" handler for unmatched routes. When a route is not
 ```
 
 
-4. Authentication Middleware:
-Implement a Authenticationi Middleware to authenticete your application. Ensures that only user  and admin can access their own accecible routes.
+### **4\. Authentication Middleware:**
+
+Implement an Authentication Middleware to authenticate your application. Ensures that only user  and admin can access their own accessible routes.
+
+```json
 {
   "success": true,
   "statusCode": 401,
   "message": "You have no access to this route",
 }
+```
+
 

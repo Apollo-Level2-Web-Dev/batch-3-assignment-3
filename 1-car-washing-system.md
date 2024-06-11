@@ -21,7 +21,7 @@ You have been assigned the task of building the backend for a Car Washing System
 
 ### Service Model
 
-*       *   `name`: Title of the service.
+    *   `name`: Title of the service.
     *   `description`: Brief description of what the service entails.
     *   `price`: Cost of the service in the local currency.
     *   `duration`**:** Duration of the service in minutes.
@@ -29,7 +29,7 @@ You have been assigned the task of building the backend for a Car Washing System
 
 ### Slot Model
 
-*       *   `service`: Reference to the specific service being booked.
+    *   `service`: Reference to the specific service being booked.
     *   `date`: Date of the booking.
     *   `startTime`: Start time of the slot.
     *   `endTime`: Approximate end time of the slot.

@@ -12,7 +12,7 @@ You have been assigned the task of building the backend for a Car Washing System
 
 ### User Model
 
-*       *   `name`: Full name of the user.
+    *   `name`: Full name of the user.
     *   `email`: Email address used for communication and login.
     *   `password`: Securely hashed password for authentication.
     *   `phone`: Contact phone number for notifications and updates.

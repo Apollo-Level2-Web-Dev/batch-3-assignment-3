@@ -618,7 +618,7 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
 -   _*Route:*_ `/api/bookings` (GET)
 -   **Request Headers:**
 
-```plain
+```javascript
 Authorization: 
 Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmF
 tZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c

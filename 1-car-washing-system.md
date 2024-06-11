@@ -12,16 +12,16 @@ You have been assigned the task of building the backend for a Car Washing System
 
 ### User Model
 
-    *   `name`: Full name of the user.
-    *   `email`: Email address used for communication and login.
-    *   `password`: Securely hashed password for authentication.
-    *   `phone`: Contact phone number for notifications and updates.
-    *   `role`**:** The role of the user, which can be one of the following: `admin`, `user`.
-    *   `address`: Complete physical address for service delivery or correspondence.
+*   `name`: Full name of the user.
+*   `email`: Email address used for communication and login.
+*   `password`: Securely hashed password for authentication.
+*   `phone`: Contact phone number for notifications and updates.
+*   `role`**:** The role of the user, which can be one of the following: `admin`, `user`.
+*   `address`: Complete physical address for service delivery or correspondence.
 
 ### Service Model
 
-    *   `name`: Title of the service.
+*   `name`: Title of the service.
     *   `description`: Brief description of what the service entails.
     *   `price`: Cost of the service in the local currency.
     *   `duration`**:** Duration of the service in minutes.
@@ -29,22 +29,22 @@ You have been assigned the task of building the backend for a Car Washing System
 
 ### Slot Model
 
-    *   `service`: Reference to the specific service being booked.
-    *   `date`: Date of the booking.
-    *   `startTime`: Start time of the slot.
-    *   `endTime`: Approximate end time of the slot.
-    *   `isBooked`: Status of the slot (available, booked, canceled).
+*   `service`: Reference to the specific service being booked.
+*   `date`: Date of the booking.
+*   `startTime`: Start time of the slot.
+*   `endTime`: Approximate end time of the slot.
+*   `isBooked`: Status of the slot (available, booked, canceled).
 
 ### Booking Model
 
-    *   `customer`: Reference to the user who made the booking.
-    *   `service`: Reference to the booked service.
-    *   `slot`: Reference to the booking slot.
-    *   `vehicleType`: Type of the vehicle (enum: `car`, `truck`, `SUV`, `van`, `motorcycle`, `bus`, `electricVehicle`, `hybridVehicle`, `bicycle`, `tractor`).
-    *   `vehicleBrand`: Brand or manufacturer of the vehicle.
-    *   `vehicleModel`: Model or variant of the vehicle.
-    *   `manufacturingYear`: Manufacturing year of the vehicle.
-    *   `registrationPlate`: Unique registration number assigned to the vehicle.
+*   `customer`: Reference to the user who made the booking.
+*   `service`: Reference to the booked service.
+*   `slot`: Reference to the booking slot.
+*   `vehicleType`: Type of the vehicle (enum: `car`, `truck`, `SUV`, `van`, `motorcycle`, `bus`, `electricVehicle`, `hybridVehicle`, `bicycle`, `tractor`).
+*   `vehicleBrand`: Brand or manufacturer of the vehicle.
+*   `vehicleModel`: Model or variant of the vehicle.
+*   `manufacturingYear`: Manufacturing year of the vehicle.
+*   `registrationPlate`: Unique registration number assigned to the vehicle.
 
 ## API Endpoints
 

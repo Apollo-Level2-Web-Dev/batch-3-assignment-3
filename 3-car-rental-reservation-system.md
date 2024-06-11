@@ -385,7 +385,7 @@ Example Request:
 
   
 
-### **9\. Book a Car (Only Accessible by Users)**
+### **9\. Book a Car (Only Accessible by User)**
 
 **Route:** `/api/bookings`(**POST**)
 
@@ -454,7 +454,7 @@ You must include "Bearer" at the beginning of the token!
 
   
 
-### **10\. Get User's Bookings (Only Accessible by logged-in User)**
+### **10\. Get User's Bookings (Only Accessible by User)**
 
 **Route:** `/api/bookings/my-bookings`(**GET**)
 

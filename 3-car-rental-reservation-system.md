@@ -598,8 +598,9 @@ When retrieving data, if the database collection is empty or no matching data is
 ```elixir
 {
   "success": false,
+  "statusCode": 404,
   "message": "No Data Found",
-  "data":[]
+  "data": []
 }
 ```
 
@@ -650,7 +651,7 @@ Implement a global "Not Found" handler for unmatched routes. When a route is not
 
 ```json
 {
-  "success": true,
+  "success": false,
   "statusCode": 404,
   "message": "Not Found",
 }
@@ -663,7 +664,7 @@ Implement an Authentication Middleware to authenticate your application. Ensures
 
 ```json
 {
-  "success": true,
+  "success": false,
   "statusCode": 401,
   "message": "You have no access to this route",
 }

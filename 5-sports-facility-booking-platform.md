@@ -243,7 +243,7 @@ Authorization: Bearer JWT_TOKEN
 }
 ```
 
-5. **Delete a Facility (Admin Only)**
+5. **Delete a Facility - Soft Delete (Admin Only)**
 *   **Route**: `DELETE /api/facility/:id`
 *   **Headers**:
 
@@ -264,7 +264,7 @@ Authorization: Bearer JWT_TOKEN
       "description": "Updated outdoor tennis court with synthetic surface.",
       "pricePerHour": 35,
       "location": "789 Sports Ave, Springfield",
-      "isDeleted": false
+      "isDeleted": true
     }
 }
 

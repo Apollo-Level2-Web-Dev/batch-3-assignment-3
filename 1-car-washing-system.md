@@ -40,10 +40,10 @@ You have been assigned the task of building the backend for a Car Washing System
 ### Service Model
 
 *   `name`: Title of the service.
-    *   `description`: Brief description of what the service entails.
-    *   `price`: Cost of the service in the local currency.
-    *   `duration`**:** Duration of the service in minutes.
-    *   `isDeleted`: Indicates whether the service is marked as deleted (false means it is not deleted).
+*   `description`: Brief description of what the service entails.
+*   `price`: Cost of the service in the local currency.
+*   `duration`**:** Duration of the service in minutes.
+*   `isDeleted`: Indicates whether the service is marked as deleted (false means it is not deleted).
 
 ### Slot Model
 

@@ -390,7 +390,7 @@ Authorization: Bearer JWT_TOKEN
     "endTime": "13:00",
     "user": "60d9c4e4f3b4b544b8b8d1c4",
     "payableAmount": 90,
-    "isBooked": true
+    "isBooked": "confirmed"
   }
 }
 ```
@@ -433,7 +433,7 @@ Authorization: Bearer JWT_TOKEN
         "address": "456 Elm Street"
       },
       "payableAmount": 90,
-      "isBooked": true
+      "isBooked": " confirmed"
     }
   ]
 }
@@ -469,7 +469,7 @@ Authorization: Bearer JWT_TOKEN
       "endTime": "13:00",
       "user": "60d9c4e4f3b4b544b8b8d1c4",
       "payableAmount": 90,
-      "isBooked": true
+      "isBooked": " confirmed"
     }
   ]
 }
@@ -504,7 +504,7 @@ Authorization: Bearer JWT_TOKEN
       "endTime": "13:00",
       "user": "60d9c4e4f3b4b544b8b8d1c4",
       "payableAmount": 90,
-      "isBooked": true 
+      "isBooked": "canceled"
     }
 }
 ```
@@ -563,7 +563,7 @@ Implement a global "Not Found" handler for unmatched routes. When a route is not
 
 ```json
 {
-  "success": true,
+  "success": false,
   "statusCode": 404,
   "message": "Not Found",
 }

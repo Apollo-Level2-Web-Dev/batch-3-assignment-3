@@ -272,7 +272,7 @@ Authorization: Bearer JWT_TOKEN
 
 **6\. Get All Facilities**
 
-*  **Route**: `GET /api/facilities`
+*  **Route**: `GET /api/facility`
 *  **Response**:
 
 ```json

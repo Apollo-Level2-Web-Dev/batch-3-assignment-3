@@ -62,7 +62,8 @@ As the development progresses, you implement robust validation and error handlin
 *   `user`: Identifier for the user who booked the room (a reference to the user model).
 *   `date`: Date of the booking.
 *   `totalAmount` : The total amount of the bill is calculated based on the selected number of slots.
-*   `isConfirmed`: Indicates the booking status, whether it's `confirmed`, `unconfirmed`, or `canceled`
+*   `isConfirmed`: Indicates the booking status, whether it's `confirmed`, `unconfirmed`, or `canceled`.
+*   `isDeleted`: Boolean to indicates whether the booking has been marked as deleted (false means it is not deleted).
 
   
 
@@ -602,7 +603,8 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
       "role": "user"
     },
     "totalAmount": 200,
-    "isConfirmed": "unconfirmed"
+    "isConfirmed": "unconfirmed",
+    "isDeleted": false
   }
 }
 
@@ -675,7 +677,8 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
       "role": "user"
     },
     "totalAmount": 200,
-    "isConfirmed": "unconfirmed"
+    "isConfirmed": "unconfirmed",
+    "isDeleted": false
   },
    // other bookings ( If any )
   ]
@@ -737,7 +740,8 @@ You must include "Bearer" at the beginning of the token!
               "isDeleted": false
             },
       "totalAmount": 200,
-      "isConfirmed": "unconfirmed"
+      "isConfirmed": "unconfirmed",
+      "isDeleted": false
     }
   ]
 }
@@ -782,7 +786,8 @@ You must include "Bearer" at the beginning of the token! Do not copy and apply d
     "totalAmount": 200,
     "room": "60d9c4e4f3b4b544b8b8d1c5",
     "user": "60d9c4e4f3b4b544b8b8d1c4",
-    "isConfirmed": "confirmed"
+    "isConfirmed": "confirmed",
+    "isDeleted": false
   }
 }
 

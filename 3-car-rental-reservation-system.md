@@ -80,7 +80,6 @@ Both users and administrators need to register and log in to the car rental web 
 *   **startTime**: The start time of the booking. The time will be in 24hr format.
 *   **endTime:** The end time of the booking. The time will be in 24hr format.
 *   **totalCost**: The total cost will be calculated using `startTime`, `endTime` and `pricePerHour` data. By default totalCost will be `0`.
-*   **isBooked**: Indicates the booking status, whether it's `unconfirmed` or `confirmed` . By default, it will be `unconfirmed`.
 
   
 
@@ -365,15 +364,12 @@ You must include "Bearer" at the beginning of the token!
 
 *   `carId`: ID of the car for which availability needs to be checked.
 *   `date`: The specific date for which availability needs to be checked (format: YYYY-MM-DD).
-*   `isBooked`: Filter the bookings based on their booking status. Possible values are:
-    *   `unconfirmed`: Booking that are unconfirmed.
-    *   `confirmed`: Booking that are confirmed.
 
   
 
 Example Request:
 
-`/api/bookings?carId=608a6d8d03a1b40012abcdef&date=2024-06-15&isBooked=unconfirmed`
+`/api/bookings?carId=608a6d8d03a1b40012abcdef&date=2024-06-15`
 
   
 
@@ -412,7 +408,6 @@ Example Request:
         "updatedAt": "2024-04-28T12:00:00.000Z"
       },
       "totalCost": 0, // it will be 0 by default, when booked. It will be calculate and update by the admin, when the car is returned.
-      "isBooked": "confirmed", 
       "createdAt": "2024-04-28T12:00:00.000Z",
       "updatedAt": "2024-05-29T12:00:00.000Z"
     },
@@ -485,7 +480,6 @@ You must include "Bearer" at the beginning of the token!
         "updatedAt": "2024-04-28T12:00:00.000Z"
       },
       "totalCost": 0, // it will be 0 by default, when booked. It will be calculate and update by the admin, when the car is returned.
-      "isBooked": "confirmed", 
       "createdAt": "2024-04-28T12:00:00.000Z",
       "updatedAt": "2024-05-29T12:00:00.000Z"
     }
@@ -545,7 +539,6 @@ You must include "Bearer" at the beginning of the token!
         "updatedAt": "2024-04-28T12:00:00.000Z"
       },
       "totaCost":1000,
-      "isBooked": "confirmed ",
       "createdAt": "2024-04-28T12:00:00.000Z",
       "updatedAt": "2024-05-29T12:00:00.000Z"
     },
@@ -616,7 +609,6 @@ You must include "Bearer" at the beginning of the token!
         "updatedAt": "2024-04-28T12:00:00.000Z"
       },
       "totalCost":1000, //Calculated using the start time, end time, and price per hour.
-      "isBooked": "confirmed",
       "createdAt": "2024-04-28T12:00:00.000Z",
       "updatedAt": "2024-05-29T12:00:00.000Z"
     }

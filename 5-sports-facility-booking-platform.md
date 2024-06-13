@@ -205,7 +205,6 @@ Authorization: Bearer JWT_TOKEN
 }
 ```
 
-`If the facility is unavailable during the requested time slot, an error response is returned.`
 
   
 
@@ -394,6 +393,8 @@ Authorization: Bearer JWT_TOKEN
   }
 }
 ```
+
+`If the facility is unavailable during the requested time slot, an error response is returned.`
 
 **9\. View All Bookings (Admin Only)**
 

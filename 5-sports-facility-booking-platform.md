@@ -306,7 +306,7 @@ Check the availability of time slots for booking on a specific date.
 
 #### Query Parameters
 
-*   **date** (`string`, optional): The date for which availability is to be checked. Format: `DD-MM-YYYY`. If not provided, today's date will be used by default.
+*   **date** (`string`, optional): The date for which availability is to be checked. Format: `YYYY-MM-DD`. If not provided, today's date will be used by default.
 
 #### Response
 
@@ -323,7 +323,7 @@ Check the availability of time slots for booking on a specific date.
 #### Example Request
 
 ```sql
-GET /api/check-availability?date=15-06-2024
+GET /api/check-availability?date=2024-06-15
 ```
 
 #### Example Response

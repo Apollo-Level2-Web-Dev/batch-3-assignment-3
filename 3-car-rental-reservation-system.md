@@ -581,7 +581,7 @@ You must include "Bearer" at the beginning of the token!
 {
   "success": true,
   "statusCode": 200,
-  "message": "Car booked successfully",
+  "message": "Car returned successfully",
   "data": {
       "_id": "60d9c4e4f3b4b544b8b8d1c7",
       "date": "2024-06-15",
